@@ -1,0 +1,62 @@
+/* --- VANILLA FIX (Obrigatório para renderizar as fontes e cores) --- */
+:root {
+  --font-geist-sans: 'DM Sans', Arial, sans-serif;
+  --font-geist-mono: monospace;
+  --bg: #FFFFFF;
+  --fg: #171717;
+}
+
+/* ── 1. TOKENS DE DESIGN (Extraído do seu globals.css) ── */
+:root {
+  --c-navy: #1A3668;
+  --c-navy-dark: #0D1F3C;
+  --c-gold: #967938;
+  --c-gold-pale: #D4B878;
+  --c-white: #FFFFFF;
+  --c-off-white: #F8F7F4;
+  --c-muted: #5A6B82;
+  --c-border: #E4E8EF;
+  
+  --space-m: 1.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --container-max: 1200px;
+}
+
+/* ── 2. ESTILOS BASE ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: var(--font-geist-sans); 
+  background-color: var(--bg); 
+  color: var(--fg);
+  line-height: 1.6;
+}
+.container { 
+  max-width: var(--container-max); 
+  margin: 0 auto; 
+  padding: 0 2rem; 
+}
+
+/* ── 3. HEADER & NAVEGAÇÃO ── */
+.site-header { padding: 1.5rem 0; border-bottom: 1px solid var(--c-border); }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.primary-nav ul { display: flex; list-style: none; gap: 2rem; }
+.primary-nav a { text-decoration: none; color: var(--c-navy); font-weight: 500; }
+.btn-cta { background: var(--c-navy); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; }
+
+/* ── 4. SEÇÕES ESPECÍFICAS ── */
+.hero-section { padding: var(--space-xl) 0; background: var(--c-off-white); }
+.hero-title { font-size: 3.5rem; color: var(--c-navy); margin-bottom: 1.5rem; }
+.hero-title em { color: var(--c-gold); font-style: italic; }
+
+.grid-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: var(--space-xl) 0; }
+.pillar-card { padding: 2rem; border: 1px solid var(--c-border); }
+.pillar-id { color: var(--c-gold); font-weight: bold; }
+
+.leaders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
+.leader-card img { width: 100%; height: auto; border-radius: 4px; filter: grayscale(1); }
+
+/* ── 5. POLÍTICA DE PRIVACIDADE ── */
+.legal-body { max-width: 800px; margin: 3rem auto; }
+.legal-block { margin-bottom: 2.5rem; }
+.legal-block h2 { color: var(--c-navy); margin-bottom: 1rem; }
