@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Olho na Acessibilidade Digital | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+        }
+
+        body { font-family: var(--font-sans); color: #111; background: #F8F7F4; margin: 0; padding: 0; }
+        .serif { font-family: var(--font-serif); }
+        
+        /* Ajuste de scroll */
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
+        .premium-border { border-left: 4px solid var(--c-gold); }
+        .gradient-navy { background: linear-gradient(135deg, var(--c-navy-dark) 0%, var(--c-navy) 100%); }
+        
+        /* Loader */
+        .loader-spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Sidebar Index Styles */
+        .index-nav a { display: block; font-size: 0.85rem; color: #666; padding: 0.5rem 0; border-left: 2px solid transparent; padding-left: 1rem; transition: 0.2s; }
+        .index-nav a:hover { color: var(--c-navy); border-left-color: var(--c-gold); background: white; }
+
+        /* Doc Preview Sidebar */
+        .doc-cover {
+            background: white; width: 100%; aspect-ratio: 1/1.414; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative;
+            display: flex; flex-direction: column; padding: 1.5rem;
+            border: 1px solid #eee; transition: transform 0.3s;
+        }
+        .dc-header { height: 40%; background: var(--c-navy); margin: -1.5rem -1.5rem 1.5rem -1.5rem; position: relative; overflow: hidden; }
+        .dc-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 10px); }
+        .dc-title { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.1; color: var(--c-navy); margin-bottom: 0.5rem; font-weight: 700; }
+
+        /* Table Responsive */
+        .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .premium-table { width: 100%; min-width: 800px; }
+        .premium-table th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-navy); border-bottom: 2px solid var(--c-gold-pale); padding: 1rem; text-align: left; }
+        .premium-table td { padding: 1rem; border-bottom: 1px solid #E4E8EF; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header id="site-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 z-[100] h-[90px] flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></div>
+            <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="#" class="hover:text-[#967938] transition-colors">Compliance</a>
+                <a href="#" class="hover:text-[#967938] transition-colors">Acessibilidade</a>
+                <a href="sustentabilidade-carbono.html" class="hover:text-[#967938] transition-colors">Sustentabilidade</a>
+            </nav>
+            <a href="centro-de-transparencia.html" class="hidden sm:block text-[10px] font-bold uppercase tracking-widest bg-[#1A3668] text-white px-4 py-2 hover:bg-[#967938] transition-all">← Centro de Transparência</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="gradient-navy pt-[140px] pb-24 text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">Governança Digital</span>
+                <h1 class="serif text-5xl md:text-7xl mb-6 leading-tight">De Olho na <span class="italic text-[#D4B878]">Acessibilidade</span>.</h1>
+                <p class="text-lg opacity-80 leading-relaxed border-l border-[#967938] pl-6">
+                    Auditamos a inclusão em cada linha de código. Garantimos que a inteligência estratégica da ASC chegue a todos os usuários, independentemente de suas capacidades físicas ou sensoriais.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="max-w-7xl mx-auto px-6 -mt-10 pb-20 relative z-20">
+        <div class="grid lg:grid-cols-12 grid-cols-1 gap-10">
+            
+            <!-- CONTENT AREA (Left) -->
+            <div class="lg:col-span-9 space-y-12">
+                
+                <!-- TOP STATS -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-8 shadow-xl border-t-4 border-[#1A3668]">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">Score Global WCAG</span>
+                        <div class="serif text-5xl text-[#1A3668] mt-2">AA+</div>
+                        <p class="text-[10px] text-[#2E7D32] mt-2 font-bold uppercase"><i class="fas fa-check-circle"></i> Conformidade LBI</p>
+                    </div>
+                    <div class="bg-white p-8 shadow-xl border-t-4 border-[#967938]">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">Barreiras de Acesso</span>
+                        <div class="serif text-5xl text-[#1A3668] mt-2">02</div>
+                        <p class="text-[10px] text-red-500 mt-2 font-bold uppercase"><i class="fas fa-exclamation-triangle"></i> Requer Atenção</p>
+                    </div>
+                    <div class="bg-white p-8 shadow-xl border-t-4 border-[#2E7D32]">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase">Validação W3C CSS</span>
+                        <div class="serif text-5xl text-[#1A3668] mt-2">100%</div>
+                        <p class="text-[10px] text-gray-400 mt-2 font-bold uppercase">Sem Erros Críticos</p>
+                    </div>
+                </div>
+
+                <!-- AUDIENCE IMPACT ANALYSIS -->
+                <section id="impacto-publicos" class="bg-white p-8 shadow-xl border border-gray-100">
+                    <div class="mb-8">
+                        <h3 class="serif text-2xl text-[#1A3668]">Análise de Impacto por Público</h3>
+                        <p class="text-sm text-gray-500">Categorização de usuários impactados por ineficiências técnicas detectadas.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Visual -->
+                        <div class="p-4 bg-[#F8F7F4] border-l-2 border-[#1A3668]">
+                            <i class="fas fa-eye text-[#967938] mb-2"></i>
+                            <h4 class="font-bold text-xs uppercase text-[#1A3668]">Deficiência Visual</h4>
+                            <div class="text-2xl serif mt-1">98%</div>
+                            <p class="text-[9px] text-gray-400 mt-1">Compatível com Leitores de Tela (NVDA/JAWS)</p>
+                        </div>
+                        <!-- Motor -->
+                        <div class="p-4 bg-[#F8F7F4] border-l-2 border-[#1A3668]">
+                            <i class="fas fa-keyboard text-[#967938] mb-2"></i>
+                            <h4 class="font-bold text-xs uppercase text-[#1A3668]">Mobilidade/Motor</h4>
+                            <div class="text-2xl serif mt-1">100%</div>
+                            <p class="text-[9px] text-gray-400 mt-1">Navegação Full-Keyboard ativada</p>
+                        </div>
+                        <!-- Cognitivo -->
+                        <div class="p-4 bg-[#F8F7F4] border-l-2 border-[#1A3668]">
+                            <i class="fas fa-brain text-[#967938] mb-2"></i>
+                            <h4 class="font-bold text-xs uppercase text-[#1A3668]">Cognitivo/Neuro</h4>
+                            <div class="text-2xl serif mt-1">85%</div>
+                            <p class="text-[9px] text-red-500 mt-1">Aviso: Textos complexos em 2 páginas</p>
+                        </div>
+                        <!-- Auditivo -->
+                        <div class="p-4 bg-[#F8F7F4] border-l-2 border-[#1A3668]">
+                            <i class="fas fa-deaf text-[#967938] mb-2"></i>
+                            <h4 class="font-bold text-xs uppercase text-[#1A3668]">Auditivo</h4>
+                            <div class="text-2xl serif mt-1">100%</div>
+                            <p class="text-[9px] text-gray-400 mt-1">Legendas e Transcrições em todos os vídeos</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SITEMAP AUDIT TABLE -->
+                <section id="auditoria-sitemap" class="space-y-6">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h3 class="serif text-2xl text-[#1A3668]">Auditoria Detalhada (Sitemap)</h3>
+                            <p class="text-sm text-gray-500">Validação W3C e WCAG por ativo digital.</p>
+                        </div>
+                        <button onclick="simulateW3CValidation()" class="text-[10px] font-bold uppercase tracking-widest text-[#967938] border-b border-[#967938] pb-1 hover:text-[#1A3668] transition-colors">
+                            <i class="fas fa-sync mr-1"></i> Revalidar Código
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white shadow-xl border border-gray-100 table-container">
+                        <table class="premium-table">
+                            <thead>
+                                <tr>
+                                    <th>Ativo (URL)</th>
+                                    <th>W3C CSS Validator</th>
+                                    <th>Erros WCAG</th>
+                                    <th>Público Afetado</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sitemapTableBody">
+                                <!-- Gerado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- SIDEBAR (Right) -->
+            <aside class="lg:col-span-3 space-y-8">
+                <!-- Widget Índice -->
+                <div class="bg-white p-6 shadow-xl border border-gray-100">
+                    <h3 class="text-[10px] font-bold text-[#967938] uppercase tracking-widest mb-4 border-b pb-2">Navegação</h3>
+                    <nav class="index-nav">
+                        <a href="#site-header">Topo</a>
+                        <a href="#impacto-publicos">Impacto por Público</a>
+                        <a href="#auditoria-sitemap">Auditoria de Sitemap</a>
+                        <a href="#documento-oficial">Documento Oficial</a>
+                    </nav>
+                </div>
+
+                <!-- Widget Capa Preview -->
+                <div id="documento-oficial" class="bg-white p-6 shadow-xl border border-gray-100 text-center">
+                    <h3 class="text-[10px] font-bold text-[#967938] uppercase tracking-widest mb-4 border-b pb-2">Preview de Relatório</h3>
+                    <div class="doc-cover">
+                        <div class="dc-header"></div>
+                        <div class="text-left">
+                            <span class="text-[8px] font-bold text-[#967938] uppercase tracking-widest">Governança Digital</span>
+                            <h4 class="dc-title">Audit. Inclusiva &<br>Acessibilidade</h4>
+                            <div class="mt-4 space-y-1">
+                                <div class="h-1 bg-gray-100 w-full"></div>
+                                <div class="h-1 bg-gray-100 w-4/5"></div>
+                                <div class="h-1 bg-gray-100 w-3/4"></div>
+                            </div>
+                            <div class="mt-6 flex justify-between items-center">
+                                <span class="text-[8px] text-gray-400">FEV 2026</span>
+                                <div class="w-4 h-4 rounded-full bg-[#1A3668]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="downloadA11yReport()" class="w-full mt-6 py-3 bg-[#1A3668] text-white text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">
+                        Baixar Relatório PDF
+                    </button>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 py-10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[10px] text-gray-400 font-bold uppercase">© 2026 ASC Consulting | Abreu & Sakata</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="#" class="hover:text-[#967938] transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-[#967938] transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON DATA FOR SITEMAP -->
+    <script id="sitemap-json" type="application/json">
+    [
+        { "name": "Home (Landing Page)", "path": "/index.html", "w3c": "Valid", "errors": 0, "impact": "Nenhum", "meta": 0 },
+        { "name": "Sobre a ASC", "path": "/sobre-a-asc.html", "w3c": "Valid", "errors": 0, "impact": "Nenhum", "meta": 0 },
+        { "name": "Nossos Serviços", "path": "/servicos.html", "w3c": "Warnings", "errors": 2, "impact": "Cognitivo (Contraste)", "meta": 0 },
+        { "name": "Contato Corporativo", "path": "/contato.html", "w3c": "Valid", "errors": 0, "impact": "Nenhum", "meta": 0 },
+        { "name": "Centro de Transparência", "path": "/hub-transparencia.html", "w3c": "Valid", "errors": 1, "impact": "Visual (Alt Text)", "meta": 0 }
+    ]
+    </script>
+
+    <script>
+        // --- RENDER TABLE ---
+        function renderSitemapTable() {
+            const data = JSON.parse(document.getElementById('sitemap-json').textContent);
+            const body = document.getElementById('sitemapTableBody');
+            
+            body.innerHTML = data.map(item => {
+                const statusColor = item.errors > 0 ? 'text-red-500' : 'text-[#2E7D32]';
+                const statusIcon = item.errors > 0 ? 'fa-times-circle' : 'fa-check-circle';
+                const statusText = item.errors > 0 ? 'Revisar' : 'Conforme';
+                
+                // Link W3C Jigsaw
+                const w3cLink = `https://jigsaw.w3.org/css-validator/validator?uri=https://auditeduca.github.io/asc-consulting.com.br${item.path}&profile=css3svg&usermedium=all&warning=1&lang=pt-BR`;
+
+                return `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <div class="font-bold text-[#1A3668]">${item.name}</div>
+                            <div class="text-[10px] text-gray-400 font-mono">${item.path}</div>
+                        </td>
+                        <td>
+                            <a href="${w3cLink}" target="_blank" class="text-xs text-[#967938] hover:underline">
+                                <i class="fas fa-external-link-alt mr-1"></i> W3C Jigsaw ${item.w3c}
+                            </a>
+                        </td>
+                        <td class="font-mono ${item.errors > 0 ? 'text-red-600 font-bold' : ''}">${item.errors} Erros</td>
+                        <td class="text-[11px] text-gray-500">${item.impact}</td>
+                        <td class="${statusColor} font-bold text-xs">
+                            <i class="fas ${statusIcon} mr-1"></i> ${statusText}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // --- SIMULATE VALIDATION ---
+        function simulateW3CValidation() {
+            const btn = document.querySelector('button[onclick="simulateW3CValidation()"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Validando...';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check mr-1"></i> Validado';
+                renderSitemapTable();
+                setTimeout(() => btn.innerHTML = '<i class="fas fa-sync mr-1"></i> Revalidar Código', 2000);
+            }, 1500);
+        }
+
+        // --- PDF DOWNLOAD ---
+        function downloadA11yReport() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const data = JSON.parse(document.getElementById('sitemap-json').textContent);
+            
+            // Estilo Header
+            doc.setFillColor(26, 54, 104);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold");
+            doc.setFontSize(22);
+            doc.text("ASC Consulting", 20, 25);
+            doc.setFontSize(10);
+            doc.text("Governança e Acessibilidade Digital", 20, 32);
+
+            // Body
+            doc.setTextColor(17, 17, 17);
+            doc.setFontSize(16);
+            doc.text("Relatório de Auditoria Inclusiva", 20, 60);
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text(`Data da Auditoria: ${new Date().toLocaleDateString('pt-BR')}`, 20, 68);
+            
+            let y = 85;
+            doc.setFont("helvetica", "bold");
+            doc.text("Página", 20, y);
+            doc.text("W3C", 80, y);
+            doc.text("Erros", 120, y);
+            doc.text("Público Impactado", 150, y);
+            doc.line(20, y+2, 190, y+2);
+            
+            y += 10;
+            doc.setFont("helvetica", "normal");
+            data.forEach(item => {
+                doc.text(item.name, 20, y);
+                doc.text(item.w3c, 80, y);
+                doc.text(item.errors.toString(), 120, y);
+                doc.text(item.impact, 150, y);
+                y += 8;
+            });
+
+            doc.save("ASC_Relatorio_Acessibilidade_Sitemap.pdf");
+        }
+
+        window.onload = () => {
+            renderSitemapTable();
+        };
+    </script>
+</body>
+</html>

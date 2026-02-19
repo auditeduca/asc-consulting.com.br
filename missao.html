@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Identidade | Missão, Visão e Valores | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #1a1a1a; 
+            background: #fff; 
+            line-height: 1.8;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        
+        .site-header { position: sticky; top: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee; height: 90px; z-index: 1000; display:flex; align-items:center; backdrop-filter: blur(10px); }
+
+        /* Typography */
+        .display-title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; color: var(--c-navy); }
+        .section-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--c-gold); display: block; margin-bottom: 1rem; }
+
+        /* Cards & Sections */
+        .identity-card {
+            background: var(--c-off-white);
+            padding: 3rem;
+            border-left: 4px solid var(--c-gold);
+            transition: transform 0.3s;
+        }
+        .identity-card:hover { transform: translateY(-5px); }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Responsive Images */
+        .image-box {
+            position: relative;
+            overflow: hidden;
+            background: #eee;
+            border-radius: 2px;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .image-box:hover img { transform: scale(1.05); }
+
+        /* Consent Box */
+        .consent-footer {
+            background: var(--c-navy-dark);
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 6rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></a>
+            <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="sobre-a-asc.html" class="hover:text-[#967938]">A Boutique</a>
+                <a href="servicos.html" class="hover:text-[#967938]">Serviços</a>
+                <a href="centro-de-transparencia.html" class="hover:text-[#967938]">Governança</a>
+            </nav>
+            <a href="solicitacao-servicos.html" class="bg-[#1A3668] text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Falar com uma Sócia</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2">
+                <span class="section-tag">Nossa Identidade</span>
+                <h1 class="display-title serif mb-8">Excelência Técnica e <span class="italic">Vivência Executiva</span> em cada decisão.</h1>
+                <p class="text-lg text-gray-600 mb-0">Na ASC, não apenas consultamos; co-lideramos a construção de negócios resilientes, unindo o rigor analítico à agilidade de uma boutique-conceito.</p>
+            </div>
+            <div class="lg:w-1/2 w-full h-[500px] image-box shadow-2xl">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPÓSITO E MISSÃO -->
+    <section class="py-20 bg-[#F8F7F4]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Propósito -->
+                <div class="identity-card">
+                    <span class="section-tag">Propósito</span>
+                    <h2 class="serif text-3xl text-[#1A3668] mb-6">Redefinindo a Dinâmica Decisória.</h2>
+                    <p class="text-gray-600">Transformar a dinâmica da tomada de decisão empresarial através de uma consultoria-conceito que une o rigor das Big Four à agilidade de uma boutique, garantindo perenidade e confiança em momentos decisivos.</p>
+                </div>
+                <!-- Missão -->
+                <div class="identity-card" style="background: white;">
+                    <span class="section-tag">Missão</span>
+                    <h2 class="serif text-3xl text-[#1A3668] mb-6">Converter Complexidade em Valor.</h2>
+                    <p class="text-gray-600">Converter complexidade operacional e demandas de mercado em alavancas de crescimento e governança, unindo excelência técnica e vivência executiva para transformar decisões críticas em valor sustentável.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISÃO (OBJETIVO) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="lg:w-1/2">
+                    <span class="section-tag">Objetivo / Visão</span>
+                    <h2 class="serif text-5xl text-[#1A3668] mb-8 leading-tight">Ser a Parceira Estratégica de Referência.</h2>
+                    <p class="text-lg text-gray-600 mb-6">Consolidar-se como uma consultoria de alta performance que integra rigor técnico, inovação tecnológica e o desenvolvimento estratégico do capital humano para líderes, empreendedores e start-ups.</p>
+                    <div class="h-1 w-24 bg-[#967938]"></div>
+                </div>
+                <div class="lg:w-1/2 w-full h-[400px] image-box">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section class="py-24 bg-[#0A1F40] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="section-tag" style="color:var(--c-gold-pale);">Nossos Pilares</span>
+                <h2 class="serif text-5xl mb-4">Valores Inegociáveis</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Nossa atuação é fundamentada em princípios que garantem a segurança e a geração de valor para nossos parceiros.</p>
+            </div>
+
+            <div class="values-grid">
+                <!-- DNA Executivo -->
+                <div class="p-8 border border-white/10 hover:border-[#967938] transition-colors">
+                    <i class="fas fa-certificate text-2xl text-[#D4B878] mb-6"></i>
+                    <h3 class="serif text-2xl mb-4">DNA Executivo & Senioridade</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Atuação consultiva fundamentada na experiência real de quem já liderou operações complexas em auditoria, transações e mercado de capitais.</p>
+                </div>
+                <!-- Visão de Dono -->
+                <div class="p-8 border border-white/10 hover:border-[#967938] transition-colors">
+                    <i class="fas fa-handshake text-2xl text-[#D4B878] mb-6"></i>
+                    <h3 class="serif text-2xl mb-4">Visão de Dono</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Foco obstinado na geração de valor tangível e na mitigação de riscos reais, com atendimento conduzido diretamente pelas sócias.</p>
+                </div>
+                <!-- ESG -->
+                <div class="p-8 border border-white/10 hover:border-[#967938] transition-colors">
+                    <i class="fas fa-leaf text-2xl text-[#D4B878] mb-6"></i>
+                    <h3 class="serif text-2xl mb-4">Governança Humana e ESG</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Compromisso com a sustentabilidade e equidade como pilares de perenidade. Integração de gestão de mudanças às diretrizes da NR 01.</p>
+                </div>
+                <!-- Liderança Feminina -->
+                <div class="p-8 border border-white/10 hover:border-[#967938] transition-colors">
+                    <i class="fas fa-female text-2xl text-[#D4B878] mb-6"></i>
+                    <h3 class="serif text-2xl mb-4">Liderança Feminina</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Programa "Empoderar para Crescer": Metodologia exclusiva de aceleração para cargos C-Level e Conselhos.</p>
+                </div>
+                <!-- Inovação -->
+                <div class="p-8 border border-white/10 hover:border-[#967938] transition-colors">
+                    <i class="fas fa-robot text-2xl text-[#D4B878] mb-6"></i>
+                    <h3 class="serif text-2xl mb-4">Eficiência e Inovação Digital</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Utilização de tecnologia e automação para otimizar o backoffice e gerar inteligência estratégica para o negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTELIGÊNCIA DE MERCADO & CONSENTIMENTO -->
+    <aside class="consent-footer">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-24 h-24 flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center">
+                    <i class="fas fa-chart-line text-3xl text-[#D4B878]"></i>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="serif text-2xl">Inteligência de Mercado ASC</h4>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Mantenha-se atualizado com a inteligência de mercado da ASC. Ao prosseguir, você autoriza o envio de estudos, análises de tendências, convites exclusivos e informações pertinentes à sua empresa. Para garantir uma experiência relevante, poderemos entrar em contato direto via e-mail considerando seu perfil de engajamento. Caso deseje, o cancelamento da inscrição pode ser feito a qualquer momento em nossas comunicações.
+                    </p>
+                    <div class="pt-4">
+                        <a href="solicitacao-servicos.html" class="inline-block border border-[#D4B878] text-[#D4B878] px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#D4B878] hover:text-[#0A1F40] transition-all">
+                            Cadastrar-se para Receber Insights
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-white text-center border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+            <div class="flex justify-center gap-6 mt-6">
+                <a href="#" class="text-[#1A3668] hover:text-[#967938] transition-colors"><i class="fab fa-linkedin-in text-lg"></i></a>
+                <a href="mailto:contato@abreusakataconsulting.com.br" class="text-[#1A3668] hover:text-[#967938] transition-colors"><i class="fas fa-envelope text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

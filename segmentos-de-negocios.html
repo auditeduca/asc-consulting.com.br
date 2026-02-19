@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentos de Negócios & Inteligência Setorial | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --c-white: #FFFFFF;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #111; 
+            background: var(--c-white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        
+        .site-header { position: sticky; top: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee; height: 90px; z-index: 1000; display:flex; align-items:center; backdrop-filter: blur(10px); }
+
+        /* Grid Backgrounds */
+        .bg-grid {
+            background-image: radial-gradient(var(--c-gold-pale) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            opacity: 0.12;
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Sector Cards */
+        .sector-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .sector-card:hover {
+            border-color: var(--c-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 54, 104, 0.08);
+        }
+
+        .solution-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border: 1px solid #eee;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        @media (max-width: 768px) { .solution-card { grid-template-columns: 1fr; } }
+
+        .image-box { width: 100%; height: 100%; object-fit: cover; min-height: 300px; }
+
+        .btn-gold {
+            background: var(--c-gold);
+            color: white;
+            padding: 1.1rem 2.2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .btn-gold:hover { background: var(--c-navy-dark); transform: scale(1.02); }
+
+        .tag-status {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        .status-expansion { background: #E8F5E9; color: #2E7D32; }
+        .status-pressure { background: #FFF3E0; color: #E65100; }
+
+        /* Partner Images Styling */
+        .partner-photo {
+            width: 100%; aspect-ratio: 4/5; object-fit: cover;
+            filter: grayscale(100%); transition: all 0.5s;
+            border-bottom: 4px solid var(--c-gold);
+        }
+        .partner-box:hover .partner-photo { filter: grayscale(0%); transform: translateY(-5px); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="logo serif text-3xl font-bold text-[#1A3668]">ASC<span>.</span></a>
+            <nav class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="sobre-a-asc.html" class="hover:text-[#967938]">A Boutique</a>
+                <a href="linhas-de-negocios.html" class="hover:text-[#967938]">Especialidades</a>
+                <a href="insights-estrategicos.html" class="hover:text-[#967938]">Insights</a>
+            </nav>
+            <a href="solicitacao-servicos.html" class="bg-[#1A3668] text-white px-6 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Agendar Diagnóstico</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-[#0A1F40] pt-32 pb-44 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.3em] mb-6 block">Inteligência Setorial 2025-2026</span>
+                <h1 class="serif text-5xl md:text-8xl mb-10 leading-tight">Mercado Brasileiro:<br><span class="italic text-[#D4B878]">Dinâmicas & Contrastes</span>.</h1>
+                <p class="text-lg md:text-2xl opacity-80 max-w-2xl leading-relaxed border-l-2 border-[#967938] pl-8">
+                    Crescimento heterogêneo do PIB, taxa Selic restritiva (15%) e a complexidade da Reforma Tributária criam ambientes de crescimento exponencial e desafios de sobrevivência.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MACRO ANALYSIS -->
+    <section class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 mb-24">
+                
+                <!-- Expansão -->
+                <div class="reveal">
+                    <h2 class="serif text-4xl text-[#1A3668] mb-8 flex items-center gap-4">
+                        Setores em Expansão <i class="fas fa-chart-line text-[#2E7D32] text-2xl"></i>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="sector-card">
+                            <span class="tag-status status-expansion mb-3 inline-block">Agronegócio</span>
+                            <p class="text-gray-600">Alta projetada de 9,5% para 2025. Foco em segurança alimentar, rastreabilidade e créditos de carbono.</p>
+                        </div>
+                        <div class="sector-card">
+                            <span class="tag-status status-expansion mb-3 inline-block">Tecnologia & SaaS</span>
+                            <h4 class="font-bold text-[#1A3668] text-sm mb-2">Líder em volume de M&A</h4>
+                            <p class="text-gray-600">Impulsionado pela digitalização profunda e o avanço da IA generativa em processos corporativos.</p>
+                        </div>
+                        <div class="sector-card">
+                            <span class="tag-status status-expansion mb-3 inline-block">Energia & Infra</span>
+                            <p class="text-gray-600">Pipeline de US$ 1,2 trilhão para IPOs em 2026. Foco absoluto em descarbonização e saneamento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Declínio/Estagnação -->
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h2 class="serif text-4xl text-[#1A3668] mb-8 flex items-center gap-4">
+                        Setores sob Pressão <i class="fas fa-shield-alt text-[#E65100] text-2xl"></i>
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="sector-card">
+                            <span class="tag-status status-pressure mb-3 inline-block">Indústria de Transformação</span>
+                            <p class="text-gray-600">Responde por apenas 10,8% do PIB. Pressionada por crédito caro e encomendas em queda (PMI abaixo de 50).</p>
+                        </div>
+                        <div class="sector-card">
+                            <span class="tag-status status-pressure mb-3 inline-block">Varejo de Bens Duráveis</span>
+                            <h4 class="font-bold text-[#1A3668] text-sm mb-2">Sensibilidade aos Juros</h4>
+                            <p class="text-gray-600">Queda no consumo de automóveis e eletrodomésticos devido ao alto endividamento das famílias.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS BY SEGMENT (CARDS) -->
+    <section class="py-24 bg-[#F8F7F4] relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-[#967938] text-[10px] font-bold uppercase tracking-widest mb-4 block">Portfólio de Ação</span>
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668]">Soluções ASC por Segmento</h2>
+            </div>
+
+            <!-- CARD 01: AGRO -->
+            <div class="solution-card reveal">
+                <div class="image-box-wrapper">
+                    <img src="https://images.unsplash.com/photo-1595066395345-0d05719321ba?auto=format&fit=crop&q=80" alt="Conformidade Agro" class="image-box">
+                </div>
+                <div class="p-12 flex flex-col justify-center">
+                    <span class="tag-category text-[10px] font-bold text-[#967938] uppercase mb-4 block">Agronegócio (Expansão)</span>
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">Conformidade Internacional no Agro</h3>
+                    <p class="text-sm text-gray-500 mb-8">
+                        A partir de 2026, a rastreabilidade total será obrigatória para a UE. Produtores sem demonstrações transparentes (CPC/IFRS) terão crédito negado.
+                    </p>
+                    <div class="bg-white border-l-4 border-[#967938] p-4 mb-8 text-[11px] text-gray-600 italic">
+                        Serviço ASC: Diagnóstico contábil e IFRS para integridade do capital e acesso ao mercado externo.
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Proteger Exportações 2026</a>
+                </div>
+            </div>
+
+            <!-- CARD 02: TECH -->
+            <div class="solution-card reveal">
+                <div class="p-12 flex flex-col justify-center order-2 md:order-1">
+                    <span class="tag-category text-[10px] font-bold text-[#967938] uppercase mb-4 block">Tecnologia & SaaS (Expansão)</span>
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">O Dilema do Valuation em Tech</h3>
+                    <p class="text-sm text-gray-500 mb-8">
+                        Ativos mais valiosos (IA e algoritmos) permanecem "fora do balanço" sob a IAS 38, levando a subprecificação agressiva em processos de M&A.
+                    </p>
+                    <div class="bg-white border-l-4 border-[#967938] p-4 mb-8 text-[11px] text-gray-600 italic">
+                        Serviço ASC: Valuation e PPA especializado em ativos intangíveis de tecnologia, capturando o valor real da inovação.
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Maximizar Valor de Saída</a>
+                </div>
+                <div class="image-box-wrapper order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Valuation Tech" class="image-box">
+                </div>
+            </div>
+
+            <!-- CARD 03: INFRA/IPO -->
+            <div class="solution-card reveal">
+                <div class="image-box-wrapper">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80" alt="IPO Readiness" class="image-box">
+                </div>
+                <div class="p-12 flex flex-col justify-center">
+                    <span class="tag-category text-[10px] font-bold text-[#967938] uppercase mb-4 block">Infraestrutura & Energia</span>
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">Governança para o Super-Ciclo de IPOs</h3>
+                    <p class="text-sm text-gray-500 mb-8">
+                        Pipeline de R$ 1,2 tri em IPOs exige estruturas robustas 12-24 meses antes do listing. Falhas na sucessão afastam fundos institucionais.
+                    </p>
+                    <div class="bg-white border-l-4 border-[#967938] p-4 mb-8 text-[11px] text-gray-600 italic">
+                        Serviço ASC: Conselhos Consultivos e programas de sucessão que garantem a perenidade perante investidores.
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Iniciar IPO Readiness</a>
+                </div>
+            </div>
+
+            <!-- CARD 04: LIDERANÇA -->
+            <div class="solution-card reveal">
+                <div class="p-12 flex flex-col justify-center order-2 md:order-1">
+                    <span class="tag-category text-[10px] font-bold text-[#967938] uppercase mb-4 block">Médias Empresas em Crescimento</span>
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">Liderança Feminina em Escala</h3>
+                    <p class="text-sm text-gray-500 mb-8">
+                        "Dores de crescimento" afetam 75% das empresas em expansão. Lacunas de diversidade no C-Level comprometem a inovação estratégica.
+                    </p>
+                    <div class="bg-white border-l-4 border-[#967938] p-4 mb-8 text-[11px] text-gray-600 italic">
+                        Serviço ASC: Fortalecimento da autoconfiança executiva e competências políticas para alta gestão.
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Desenvolver Alta Gestão</a>
+                </div>
+                <div class="image-box-wrapper order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Liderança Executiva" class="image-box">
+                </div>
+            </div>
+
+            <!-- CARD 05: INDÚSTRIA/AUTOMAÇÃO -->
+            <div class="solution-card reveal">
+                <div class="image-box-wrapper">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80" alt="Automação Industrial" class="image-box">
+                </div>
+                <div class="p-12 flex flex-col justify-center">
+                    <span class="tag-category text-[10px] font-bold text-[#967938] uppercase mb-4 block">Indústria de Transformação</span>
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">Eficiência em Margens Comprimidas</h3>
+                    <p class="text-sm text-gray-500 mb-8">
+                        Juros de 15% e aumento de custos operacionais derrubam o PIB industrial. A sobrevivência depende de cortar o colapso de produtividade.
+                    </p>
+                    <div class="bg-white border-l-4 border-[#967938] p-4 mb-8 text-[11px] text-gray-600 italic">
+                        Serviço ASC: Automação de processos operacionais e financeiros (Digital & Process Automation) para recuperar margem líquida.
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Automatizar Backoffice</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONCLUSION BLOCK -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="serif text-5xl text-[#1A3668] mb-10 leading-tight">O Imperativo da Especialização</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                A contabilidade avançada em 2025 e 2026 não admite amadorismo. A profundidade técnica exigida em processos de M&A e a urgência das normas de sustentabilidade transformam o contador em um arquiteto financeiro global. O domínio de competências integradas será o diferencial dos líderes que navegarão com sucesso pela transição econômica da próxima década.
+            </p>
+        </div>
+    </section>
+
+    <!-- PARTNER BLOCK (VAMOS CONVERSAR) -->
+    <section class="bg-[#0A1F40] py-32 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 space-y-10 text-center lg:text-left">
+                    <div class="reveal">
+                        <h2 class="serif text-6xl mb-6">Vamos Conversar?</h2>
+                        <p class="text-xl opacity-70 mb-10">Prontos para elevar o patamar da sua governança e estratégia.</p>
+                    </div>
+                    <div class="space-y-6 reveal">
+                        <p class="text-xs font-bold tracking-widest uppercase">contato@abreusakataconsulting.com.br</p>
+                        <p class="text-xs font-bold tracking-widest uppercase">linkedin.com/company/asc-consultoria</p>
+                    </div>
+                    <div class="pt-10 reveal">
+                        <a href="solicitacao-servicos.html" class="btn-gold scale-110">Agendar Diagnóstico Estratégico <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6 reveal">
+                    <div class="partner-box text-center lg:text-left">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Vânia Abreu" class="partner-photo">
+                        <p class="serif text-xl mt-4">Vânia Abreu</p>
+                        <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Socia-Fundadora | ex-Big 4</p>
+                    </div>
+                    <div class="partner-box text-center lg:text-left">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80" alt="Patrícia Sakata" class="partner-photo">
+                        <p class="serif text-xl mt-4">Patrícia Sakata</p>
+                        <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Socia-Fundadora | ex-Big 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-white text-center border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+        </div>
+    </footer>
+
+    <!-- REVEAL ENGINE -->
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

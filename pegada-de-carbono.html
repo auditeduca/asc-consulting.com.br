@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustentabilidade Digital & Carbono | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+        }
+
+        body { font-family: var(--font-sans); color: #111; background: #F8F7F4; margin: 0; padding: 0; }
+        .serif { font-family: var(--font-serif); }
+        
+        .premium-border { border-left: 4px solid var(--c-gold); }
+        .gradient-navy { background: linear-gradient(135deg, var(--c-navy-dark) 0%, var(--c-navy) 100%); }
+        
+        /* Ajuste de scroll para âncoras considerando o header fixo */
+        html { scroll-padding-top: 100px; }
+
+        /* Animação de Pulsar para Resultados */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(150, 121, 56, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(150, 121, 56, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(150, 121, 56, 0); }
+        }
+        .pulse { animation: pulse-gold 2s infinite; }
+
+        /* Loader */
+        .loader-spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Tabela Responsiva Premium */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .premium-table {
+            width: 100%;
+            min-width: 600px;
+        }
+        .premium-table th {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-navy);
+            border-bottom: 2px solid var(--c-gold-pale);
+            padding: 1rem;
+            text-align: left;
+        }
+        .premium-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E4E8EF;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        .premium-table tr:hover { background: #FDFCFB; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header id="site-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 z-[100] h-[90px] flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></div>
+            <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="#" class="hover:text-[#967938] transition-colors">Estratégia</a>
+                <a href="#" class="hover:text-[#967938] transition-colors">Governança</a>
+                <a href="#" class="text-[#967938]">Sustentabilidade</a>
+            </nav>
+            <a href="centro-de-transparencia.html" class="hidden sm:block text-[10px] font-bold uppercase tracking-widest bg-[#1A3668] text-white px-4 py-2 hover:bg-[#967938] transition-all">← Centro de Transparência</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="gradient-navy pt-[140px] pb-24 text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">Responsabilidade ESG</span>
+                <h1 class="serif text-5xl md:text-7xl mb-6 leading-tight">Pegada de Carbono Digital & <span class="italic text-[#D4B878]">Eficiência</span>.</h1>
+                <p class="text-lg opacity-80 leading-relaxed border-l border-[#967938] pl-6">
+                    A economia digital não é imaterial. Na ASC, auditamos o impacto ambiental de cada byte transferido, garantindo que a tecnologia sirva ao propósito sem comprometer o planeta.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR & ANALYSIS -->
+    <section class="max-w-7xl mx-auto px-6 -mt-10 pb-20 relative z-20">
+        <div class="grid lg:grid-cols-12 grid-cols-1 gap-8">
+            
+            <!-- INPUT WIDGET (Simplificado: Apenas Tráfego e Botão) -->
+            <div class="lg:col-span-4 bg-white p-8 shadow-2xl border border-gray-100 flex flex-col justify-center">
+                <h3 class="serif text-2xl text-[#1A3668] mb-4">Auditoria Global do Site</h3>
+                <p class="text-xs text-gray-500 mb-8 leading-relaxed">Projete o impacto total de sua presença digital com base em todas as páginas mapeadas em nosso sitemap.</p>
+                
+                <div class="space-y-8">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-400 mb-4">Volume de Tráfego Mensal (Global)</label>
+                        <input type="range" id="trafficInput" min="1000" max="100000" step="1000" value="10000" class="w-full accent-[#967938]">
+                        <div class="flex justify-between mt-2 text-[10px] font-mono text-gray-500">
+                            <span>1k visitas</span>
+                            <span id="trafficLabel" class="text-[#967938] font-bold text-sm">10,000 visitas</span>
+                            <span>100k visitas</span>
+                        </div>
+                    </div>
+                    
+                    <button id="btnCalc" class="w-full py-5 bg-[#1A3668] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#967938] transition-all flex items-center justify-center gap-3 shadow-lg">
+                        <span>Calcular Impacto Global</span>
+                    </button>
+                    
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-[9px] text-gray-400 leading-tight italic">
+                            *Cálculo consolidado utilizando a média de intensidade energética de 5 páginas estratégicas da ASC Consulting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTS PANEL -->
+            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6" id="resultsArea">
+                
+                <!-- Card Carbono Global -->
+                <div class="bg-white p-8 border-t-4 border-[#2E7D32] shadow-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-gray-400">Emissão Média por Sessão</span>
+                        <div class="flex items-baseline gap-2 mt-2">
+                            <span id="carbonVal" class="serif text-5xl text-[#1A3668]">0.35</span>
+                            <span class="text-sm text-gray-500">g CO2e</span>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flex justify-between text-[10px] mb-2">
+                            <span>Status: <span class="text-[#2E7D32] font-bold uppercase">Eco-Efficient</span></span>
+                            <span>Média de todas as páginas</span>
+                        </div>
+                        <div class="h-1 w-full bg-gray-100"><div id="carbonBar" class="h-full bg-[#2E7D32]" style="width: 25%"></div></div>
+                    </div>
+                </div>
+
+                <!-- Card Peso Médio -->
+                <div class="bg-white p-8 border-t-4 border-[#967938] shadow-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase text-gray-400">Peso Médio das Páginas</span>
+                        <div class="flex items-baseline gap-2 mt-2">
+                            <span id="weightVal" class="serif text-5xl text-[#1A3668]">1.05</span>
+                            <span class="text-sm text-gray-500">MB</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 grid grid-cols-2 gap-4 text-[10px]">
+                        <div class="flex items-center gap-2 font-bold"><i class="fas fa-bullseye text-[#967938]"></i> Meta Global: 1.2MB</div>
+                        <div id="metaStatus" class="flex items-center gap-2 text-[#2E7D32] font-bold"><i class="fas fa-check-circle"></i> Otimizado</div>
+                    </div>
+                </div>
+
+                <!-- Chart Area -->
+                <div class="md:col-span-2 bg-white p-8 shadow-lg">
+                    <h4 class="serif text-xl text-[#1A3668] mb-6">Projeção de Pegada de Carbono Anual (Site Completo)</h4>
+                    <div class="h-[280px] w-full">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SITEMAP AUDIT TABLE (A Lista de Resultados) -->
+    <section class="max-w-7xl mx-auto px-6 py-20">
+        <div class="mb-10">
+            <span class="text-[#967938] text-xs font-bold uppercase tracking-widest mb-2 block">Lista de Auditoria Detalhada</span>
+            <h2 class="serif text-3xl text-[#1A3668]">Monitoramento por Ativo (Sitemap)</h2>
+            <p class="text-gray-500 max-w-2xl mt-2">Abaixo, a decomposição técnica de cada página que compõe os resultados globais apresentados acima.</p>
+        </div>
+
+        <div class="bg-white shadow-xl border border-gray-100 table-container">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Página (Sitemap)</th>
+                        <th>Peso Atual</th>
+                        <th>Meta</th>
+                        <th>Emissões/Sessão</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="sitemapTableBody">
+                    <!-- Gerado dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CONTENT EDITORIAL -->
+    <section class="max-w-4xl mx-auto px-6 py-20 border-t border-gray-200">
+        <article class="prose prose-slate max-w-none">
+            <span class="text-[#967938] text-xs font-bold uppercase tracking-widest mb-4 block">Governança ESG Digital</span>
+            <h2 class="serif text-4xl text-[#1A3668] mb-8 leading-tight">Nosso compromisso com o <span class="italic">Net-Zero</span> Digital.</h2>
+            <p class="text-lg text-gray-600 mb-6 text-justify">
+                A ASC Consulting adota o rigor das auditorias financeiras para o ambiente tecnológico. Entendemos que um código ineficiente não é apenas uma falha técnica, mas um desperdício energético que impacta a sustentabilidade corporativa.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-10 my-12">
+                <div class="premium-border pl-6">
+                    <h4 class="font-bold text-[#1A3668] mb-2 uppercase text-sm">Carbon Grid Intensity</h4>
+                    <p class="text-sm text-gray-500">Calculamos o impacto com base na média ponderada de emissões por transferência de dados, considerando servidores alimentados por energia limpa.</p>
+                </div>
+                <div class="premium-border pl-6">
+                    <h4 class="font-bold text-[#1A3668] mb-2 uppercase text-sm">Eco-Design Principles</h4>
+                    <p class="text-sm text-gray-500">Nossa meta é manter todas as páginas institucionais abaixo de 1.2MB, priorizando formatos de próxima geração como WebP e SVG.</p>
+                </div>
+            </div>
+
+            <!-- DOWNLOAD CARD -->
+            <div class="bg-[#0A1F40] p-10 flex flex-col md:flex-row items-center justify-between gap-8 mt-12 rounded-sm">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-20 bg-white shadow-xl flex items-center justify-center text-[#1A3668] font-bold">PDF</div>
+                    <div>
+                        <h5 class="text-white font-bold">Declaração de Sustentabilidade Digital</h5>
+                        <p class="text-xs text-gray-400">Auditoria Completa de Sitemap e Carbono</p>
+                    </div>
+                </div>
+                <button onclick="downloadReport()" class="px-8 py-3 border border-[#D4B878] text-[#D4B878] text-xs font-bold uppercase tracking-widest hover:bg-[#967938] hover:text-white transition-all w-full md:w-auto">
+                    Gerar Relatório PDF
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 py-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[10px] text-gray-400 font-bold uppercase">© 2026 ASC Consulting | Abreu & Sakata</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="#" class="hover:text-[#967938] transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="hover:text-[#967938] transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOCK DATA SITEMAP ---
+        const sitemapData = [
+            { path: "/index.html", name: "Home (Landing Page)", weight: 1.25, meta: 1.50, co2: 0.42 },
+            { path: "/sobre-a-asc.html", name: "Institucional / Sobre", weight: 0.85, meta: 1.00, co2: 0.28 },
+            { path: "/servicos.html", name: "Portfolio de Serviços", weight: 1.42, meta: 1.50, co2: 0.48 },
+            { path: "/contato.html", name: "Canal de Contato", weight: 0.45, meta: 0.80, co2: 0.15 },
+            { path: "/hub-transparencia.html", name: "Hub de Governança", weight: 0.92, meta: 1.20, co2: 0.31 }
+        ];
+
+        // --- CÁLCULOS GLOBAIS ---
+        const avgWeight = sitemapData.reduce((acc, curr) => acc + curr.weight, 0) / sitemapData.length;
+        const avgCO2 = sitemapData.reduce((acc, curr) => acc + curr.co2, 0) / sitemapData.length;
+
+        function renderSitemap() {
+            const container = document.getElementById('sitemapTableBody');
+            container.innerHTML = sitemapData.map(item => {
+                const isOver = item.weight > item.meta;
+                const statusColor = isOver ? 'text-red-500' : 'text-[#2E7D32]';
+                const statusIcon = isOver ? 'fa-arrow-up' : 'fa-check-circle';
+                const statusText = isOver ? 'Acima da Meta' : 'Otimizado';
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="font-bold text-[#1A3668]">${item.name}</div>
+                            <div class="text-[10px] text-gray-400 font-mono">${item.path}</div>
+                        </td>
+                        <td class="font-mono ${isOver ? 'text-red-600' : ''}">${item.weight.toFixed(2)} MB</td>
+                        <td class="text-gray-400 font-mono">${item.meta.toFixed(2)} MB</td>
+                        <td>${item.co2.toFixed(3)}g</td>
+                        <td class="${statusColor} font-bold text-xs">
+                            <i class="fas ${statusIcon} mr-1"></i> ${statusText}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // --- CHART CONFIG ---
+        const ctx = document.getElementById('impactChart').getContext('2d');
+        let impactChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Média Global (Standard)', 'Meta ASC', 'Projeção de Tráfego'],
+                datasets: [{
+                    label: 'CO2 Anual (kg)',
+                    data: [180, 45, 0],
+                    backgroundColor: ['#E2E8F0', '#967938', '#1A3668'],
+                    borderRadius: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: '#F1F5F9' }, ticks: { font: { size: 10 } } },
+                    x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                }
+            }
+        });
+
+        // --- CALCULATOR LOGIC ---
+        const btnCalc = document.getElementById('btnCalc');
+        const trafficInput = document.getElementById('trafficInput');
+        const trafficLabel = document.getElementById('trafficLabel');
+
+        trafficInput.addEventListener('input', (e) => {
+            trafficLabel.innerText = `${parseInt(e.target.value).toLocaleString()} visitas`;
+        });
+
+        btnCalc.addEventListener('click', async () => {
+            btnCalc.disabled = true;
+            btnCalc.innerHTML = `<div class="loader-spinner"></div> Analisando...`;
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const traffic = parseInt(trafficInput.value);
+            
+            // Atualizar Cards com médias Globais
+            document.getElementById('carbonVal').innerText = avgCO2.toFixed(2);
+            document.getElementById('weightVal').innerText = avgWeight.toFixed(2);
+            
+            // Update Chart (Projeção baseada na média global do site)
+            const projectedYearly = (avgCO2 * traffic * 12) / 1000;
+            impactChart.data.datasets[0].data[2] = projectedYearly.toFixed(1);
+            impactChart.update();
+
+            // Reset UI
+            btnCalc.disabled = false;
+            btnCalc.innerHTML = `<span>Calcular Impacto Global</span>`;
+            document.getElementById('resultsArea').classList.add('pulse');
+            setTimeout(() => document.getElementById('resultsArea').classList.remove('pulse'), 2000);
+        });
+
+        // --- PDF GENERATION ---
+        function downloadReport() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFillColor(26, 54, 104);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold");
+            doc.setFontSize(20);
+            doc.text("ASC CONSULTING - AUDITORIA DIGITAL ESG", 20, 25);
+            
+            doc.setTextColor(17, 17, 17);
+            doc.setFontSize(16);
+            doc.text("Resultados Consolidados do Sitemap", 20, 60);
+            
+            doc.setFontSize(10);
+            doc.text(`Relatório gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 20, 70);
+            doc.text(`Tráfego Projetado: ${trafficLabel.innerText}/mês`, 20, 75);
+            
+            let y = 90;
+            doc.setFont("helvetica", "bold");
+            doc.text("Página Mapeada", 20, y);
+            doc.text("Peso", 100, y);
+            doc.text("CO2/Sessão", 140, y);
+            doc.text("Meta", 180, y);
+            doc.line(20, y + 2, 190, y + 2);
+            
+            y += 10;
+            doc.setFont("helvetica", "normal");
+            sitemapData.forEach(item => {
+                doc.text(item.name, 20, y);
+                doc.text(item.weight.toFixed(2) + " MB", 100, y);
+                doc.text(item.co2.toFixed(3) + "g", 140, y);
+                doc.text(item.meta.toFixed(2) + " MB", 180, y);
+                y += 8;
+            });
+
+            y += 10;
+            doc.setFont("helvetica", "bold");
+            doc.text(`Impacto Anual Projetado: ${impactChart.data.datasets[0].data[2]} kg de CO2`, 20, y);
+
+            doc.save(`ASC_Auditoria_Consolidada_ESG.pdf`);
+        }
+
+        window.onload = () => {
+            // Inicializar com cálculos globais
+            renderSitemap();
+            document.getElementById('carbonVal').innerText = avgCO2.toFixed(2);
+            document.getElementById('weightVal').innerText = avgWeight.toFixed(2);
+        };
+    </script>
+</body>
+</html>

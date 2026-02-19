@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Cookies | ASC Consulting</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PDF Lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        /* ══════════════════════════════════════════════
+           TOKENS & GLOBAL STYLES
+           ══════════════════════════════════════════════ */
+        :root {
+            --c-navy: #1A3668; --c-navy-dark: #0A1F40;
+            --c-gold: #967938; --c-gold-hover: #B0924B; --c-gold-pale: #D4B878;
+            --c-white: #FFFFFF; --c-off-white: #F8F7F4; --c-border: #E4E8EF;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+            --container-max: 1280px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-sans); color: #444; background: var(--c-off-white); line-height: 1.6; scroll-behavior: smooth; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        .container { max-width: var(--container-max); margin: 0 auto; padding: 0 2rem; }
+
+        /* HEADER */
+        .site-header { position: sticky; top: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--c-border); height: 90px; z-index: 1000; display:flex; align-items:center; backdrop-filter: blur(10px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; width:100%; }
+        .logo { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--c-navy); }
+        .logo span { color: var(--c-gold); }
+        .nav-back { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--c-navy); }
+
+        /* HERO */
+        .hero { position: relative; padding: 8rem 0 6rem; background: var(--c-navy-dark); color: white; overflow: hidden; }
+        .hero-bg { 
+            position: absolute; inset: 0; opacity: 0.3; 
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80'); 
+            background-size: cover; background-position: center; 
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; }
+        .hero h1 { font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        /* LAYOUT & CONTENT */
+        .content-section { padding: 4rem 0 8rem; background: white; }
+        .grid-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; position: relative; }
+
+        .text-content { font-size: 1.05rem; }
+        .text-content h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--c-navy); margin-top: 3rem; margin-bottom: 1rem; border-bottom: 1px solid var(--c-border); padding-bottom: 0.5rem; scroll-margin-top: 120px; }
+        .text-content h3 { font-family: var(--font-ui); font-size: 1rem; color: var(--c-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2rem; margin-bottom: 0.5rem; }
+        .text-content p { margin-bottom: 1.5rem; text-align: justify; color: var(--c-text-secondary); }
+        .text-content ul { margin-bottom: 2rem; padding-left: 1.5rem; }
+        .text-content li { margin-bottom: 0.8rem; color: var(--c-text-secondary); }
+        
+        /* SIDEBAR WIDGETS */
+        .sidebar { position: sticky; top: 120px; height: fit-content; }
+        
+        .widget { background: var(--c-off-white); border: 1px solid var(--c-border); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; }
+        .widget h3 { font-family: var(--font-ui); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-gold); margin-bottom: 1rem; font-weight: 700; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.5rem; }
+        
+        /* Index Navigation */
+        .index-nav a { display: block; font-size: 0.9rem; color: var(--c-text-tertiary); padding: 0.5rem 0; border-left: 2px solid transparent; padding-left: 1rem; margin-bottom: 0.2rem; }
+        .index-nav a:hover { color: var(--c-navy); border-left-color: var(--c-gold); background: white; }
+
+        /* Doc Preview Widget (CSS Cover) */
+        .doc-cover {
+            background: white; width: 100%; aspect-ratio: 1/1.414; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative;
+            display: flex; flex-direction: column; padding: 1.5rem;
+            border: 1px solid #eee; transition: transform 0.3s;
+        }
+        .doc-cover:hover { transform: translateY(-5px); }
+        .dc-header { height: 40%; background: var(--c-navy); margin: -1.5rem -1.5rem 1.5rem -1.5rem; position: relative; }
+        .dc-header::after { content: 'ASC.'; position: absolute; bottom: 1rem; right: 1rem; color: rgba(255,255,255,0.1); font-weight: 700; font-size: 2rem; font-family: var(--font-serif); }
+        .dc-title { font-family: var(--font-serif); font-size: 1.4rem; line-height: 1.1; color: var(--c-navy); margin-bottom: 0.5rem; }
+        .dc-sub { font-size: 0.7rem; text-transform: uppercase; color: var(--c-gold); letter-spacing: 0.1em; }
+        .dc-lines div { height: 4px; background: #f0f0f0; margin-bottom: 6px; }
+        
+        /* DOWNLOAD BAR */
+        .dl-bar {
+            background: var(--c-navy); padding: 1.5rem; color: white; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1); display: flex; justify-content: center;
+        }
+        .dl-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--container-max); padding: 0 2rem; }
+        .dl-btn {
+            background: var(--c-gold); color: white; padding: 1rem 2rem; border-radius: 2px;
+            font-family: var(--font-ui); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            display: flex; align-items: center; gap: 1rem; border: none; cursor: pointer; transition: 0.3s;
+        }
+        .dl-btn:hover { background: white; color: var(--c-navy); }
+        .dl-btn.loading { opacity: 0.7; pointer-events: none; }
+
+        @media(max-width: 1024px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .dl-container { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ASC<span>.</span></a>
+            <a href="centro-de-transparencia.html" class="nav-back">← Voltar</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <span class="eyebrow" style="color:var(--c-gold-pale);">Transparência Digital</span>
+            <h1>Aviso de Cookies e<br>Tecnologias de Rastreamento.</h1>
+            <p>Você está no controle. Entenda como utilizamos dados para melhorar sua experiência e gerencie suas preferências.</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="content-section">
+        <div class="container grid-layout">
+            
+            <!-- TEXT AREA -->
+            <div class="text-content">
+                <p class="lead" id="intro" style="font-size:1.2rem; color:var(--c-navy); font-weight:500; border-left:4px solid var(--c-gold); padding-left:1.5rem;">
+                    Na ASC Consulting, respeitamos suas preocupações sobre privacidade e valorizamos a relação que temos com você. #YourDataIsYours
+                </p>
+                <p>Como muitas empresas, utilizamos nosso website para reunir informações que nos ajudem a melhorar a sua experiência e nossos serviços. Os cookies que utilizamos permitem o funcionamento do nosso website e nos ajudam a compreender quais informações são mais úteis e relevantes para você.</p>
+                
+                <h2 id="quem-coleta">Quem Coleta Os Seus Dados Pessoais?</h2>
+                <p>Todos os dados pessoais fornecidos ou coletados pela ASC por meio de cookies e/ou outras tecnologias de monitoramento são tratados pela <strong>ASC Abreu & Sakata Consulting Ltda.</strong>, atuando como Controladora de Dados.</p>
+                <p>Ao utilizar os nossos websites e permitir o uso de cookies, você concorda que utilizaremos os cookies de acordo com este Termo e com nossa Política de Privacidade. Caso não esteja de acordo, você pode ajustar as definições do seu navegador ou utilizar nossa ferramenta de gestão de consentimento.</p>
+
+                <h2 id="o-que-e">O Que Significa “Cookie”?</h2>
+                <p>Cookies, pixel tags e tecnologias similares (em conjunto designados “cookies”) são arquivos que contêm pequenas quantidades de informação e que são baixados em qualquer dispositivo que utilize a Internet – tal como o seu computador, smartphone ou tablet – quando visita um website. Os cookies efetuam um conjunto variado de tarefas úteis, tais como o registro das suas preferências, melhorando globalmente a sua experiência online.</p>
+
+                <h2 id="por-que-utilizamos">Por Que Utilizamos Cookies?</h2>
+                <ul>
+                    <li><strong>Experiência Personalizada:</strong> Facilitar a navegação e adaptar o conteúdo aos seus interesses e necessidades.</li>
+                    <li><strong>Agilidade:</strong> Ajudar a agilizar as suas atividades futuras e a sua experiência nos websites ASC.</li>
+                    <li><strong>Melhoria Contínua:</strong> Compilar estatísticas anônimas e agregadas que nos permitem compreender como as pessoas utilizam nossos serviços.</li>
+                    <li><strong>Publicidade (Opcional):</strong> Quando autorizado, para distribuir publicidade direcionada e limitar o número de vezes que você vê um anúncio.</li>
+                </ul>
+
+                <h2 id="como-controlar">Como Posso Controlar Ou Apagar Cookies?</h2>
+                <p>Você pode configurar suas preferências a qualquer momento através do nosso <strong>Banner de Consentimento</strong> ou diretamente nas configurações do seu navegador.</p>
+                <p>Alertamos que a desativação de cookies estritamente necessários pode impactar sua experiência (por exemplo, acesso a áreas restritas de clientes).</p>
+
+                <h2 id="que-cookies">Que Cookies Utilizamos?</h2>
+                
+                <h3>1. Cookies Necessários</h3>
+                <p>Essenciais para o pleno funcionamento do site (ex: segurança, balanceamento de carga). Não identificam o usuário pessoalmente. Sem eles, serviços como área do cliente não funcionam.</p>
+                
+                <h3>2. Cookies de Desempenho (Analíticos)</h3>
+                <p>Coletam informações sobre como você usa o site (páginas mais visitadas, erros). Toda a informação é agregada e anônima. Usamos Google Analytics para esta finalidade.</p>
+                
+                <h3>3. Cookies Funcionais</h3>
+                <p>Permitem que o site memorize suas escolhas (como nome de usuário, idioma ou região) para fornecer uma experiência mais personalizada.</p>
+                
+                <h3>4. Cookies de Publicidade e Terceiros</h3>
+                <p>Utilizados para fornecer conteúdos mais relevantes e medir a eficácia de campanhas. Podem incluir cookies de parceiros como LinkedIn, Google DoubleClick e Meta.</p>
+
+                <h2 id="duracao">Duração dos Cookies</h2>
+                <ul>
+                    <li><strong>Cookies de Sessão:</strong> Temporários. Permanecem no seu dispositivo apenas até você fechar o navegador.</li>
+                    <li><strong>Cookies Permanentes:</strong> Permanecem no dispositivo por tempo indefinido ou até serem apagados manualmente.</li>
+                </ul>
+
+                <div style="background:var(--c-off-white); padding:2rem; margin-top:3rem; border-radius:4px; text-align:center;">
+                    <h3 style="color:var(--c-navy); margin-top:0;">Dúvidas sobre seus dados?</h3>
+                    <p>Entre em contato com nosso Encarregado de Dados (DPO).</p>
+                    <a href="mailto:dpo@asc-consulting.com.br" style="font-weight:700; color:var(--c-gold);">dpo@asc-consulting.com.br</a>
+                </div>
+            </div>
+
+            <!-- SIDEBAR PADRÃO -->
+            <aside class="sidebar">
+                <!-- Widget Índice -->
+                <div class="widget">
+                    <h3>Índice</h3>
+                    <nav class="index-nav">
+                        <a href="#intro">Introdução</a>
+                        <a href="#quem-coleta">Quem Coleta</a>
+                        <a href="#o-que-e">Definição de Cookie</a>
+                        <a href="#por-que-utilizamos">Finalidade</a>
+                        <a href="#como-controlar">Como Controlar</a>
+                        <a href="#que-cookies">Tipos de Cookies</a>
+                        <a href="#duracao">Duração</a>
+                    </nav>
+                </div>
+
+                <!-- Widget Preview Documento -->
+                <div class="widget" style="text-align:center;">
+                    <h3>Documento Oficial</h3>
+                    <div class="doc-cover">
+                        <div class="dc-header"></div>
+                        <div style="text-align:left; padding:0 1rem;">
+                            <div class="dc-sub">Política Institucional</div>
+                            <div class="dc-title">Aviso de<br>Cookies</div>
+                            <div class="dc-lines" style="margin-top:2rem;">
+                                <div style="width:80%"></div>
+                                <div style="width:100%"></div>
+                                <div style="width:90%"></div>
+                                <div style="width:60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size:0.8rem; margin-top:1rem; opacity:0.7;">Versão Fev/2026</p>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <div style="height:100px;"></div>
+
+    <!-- DOWNLOAD BAR -->
+    <div class="dl-bar">
+        <div class="dl-container">
+            <div>
+                <strong style="display:block; color:white; font-size:1.1rem;">Política de Cookies (PDF)</strong>
+                <span style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Documento completo para compliance e arquivamento.</span>
+            </div>
+            <button class="dl-btn" onclick="generatePDF()">
+                <i class="fas fa-file-pdf"></i> Baixar Documento Oficial
+            </button>
+        </div>
+    </div>
+
+    <!-- JSON DATA FOR PDF GENERATION -->
+    <script id="cookie-policy-data" type="application/json">
+    {
+        "title": "Aviso de Cookies e Tecnologias de Rastreamento",
+        "company": "ASC Abreu & Sakata Consulting",
+        "date": "18 de Fevereiro de 2026",
+        "intro": "Na ASC Consulting, respeitamos as suas preocupações sobre privacidade e valorizamos a relação que temos com você. Utilizamos cookies para melhorar a sua experiência e nossos serviços.",
+        "sections": [
+            {
+                "heading": "1. Quem Coleta Os Seus Dados?",
+                "content": "Todos os dados pessoais coletados por meio de cookies são tratados pela ASC Abreu & Sakata Consulting Ltda. Ao utilizar nossos websites, você concorda com o uso de cookies conforme este Aviso."
+            },
+            {
+                "heading": "2. O Que São Cookies?",
+                "content": "Cookies são arquivos baixados no seu dispositivo que registram preferências e melhoram a experiência online. Eles podem ser de sessão (temporários) ou permanentes."
+            },
+            {
+                "heading": "3. Por Que Utilizamos?",
+                "content": "Para facilitar a navegação, personalizar conteúdo, compilar estatísticas anônimas de uso e, quando autorizado, para fins publicitários."
+            },
+            {
+                "heading": "4. Categorias de Cookies",
+                "content": "Utilizamos: (A) Necessários (essenciais para funcionamento); (B) Desempenho (estatísticas anônimas); (C) Funcionais (memorizam escolhas); (D) Publicidade (conteúdo relevante)."
+            },
+            {
+                "heading": "5. Controle e Gestão",
+                "content": "Você pode gerenciar suas preferências através do nosso Banner de Cookies ou das configurações do seu navegador. A recusa de cookies necessários pode afetar a funcionalidade do site."
+            }
+        ],
+        "footer": "ASC Consulting - Documento gerado eletronicamente."
+    }
+    </script>
+
+    <!-- PDF SCRIPT -->
+    <script>
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const btn = document.querySelector('.dl-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
+            btn.classList.add('loading');
+
+            try {
+                const data = JSON.parse(document.getElementById('cookie-policy-data').textContent);
+                const doc = new jsPDF();
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const margin = 20;
+                const maxLineWidth = pageWidth - (margin * 2);
+                let y = 20;
+
+                // Header
+                doc.setFillColor(26, 54, 104); // Navy
+                doc.rect(0, 0, pageWidth, 40, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFont("times", "bold");
+                doc.setFontSize(22);
+                doc.text("ASC Consulting", margin, 20);
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                doc.text("Política Institucional", margin, 28);
+
+                y = 60;
+
+                // Title
+                doc.setTextColor(26, 54, 104);
+                doc.setFont("times", "bold");
+                doc.setFontSize(18);
+                doc.text(data.title, margin, y);
+                y += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(100);
+                doc.text(`Data: ${data.date}`, margin, y);
+                y += 15;
+
+                // Intro
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(0);
+                doc.setFontSize(11);
+                const splitIntro = doc.splitTextToSize(data.intro, maxLineWidth);
+                doc.text(splitIntro, margin, y);
+                y += (splitIntro.length * 6) + 10;
+
+                // Sections
+                data.sections.forEach(sec => {
+                    if (y > 250) { doc.addPage(); y = 20; }
+                    
+                    doc.setFont("times", "bold");
+                    doc.setFontSize(14);
+                    doc.setTextColor(150, 121, 56); // Gold
+                    doc.text(sec.heading, margin, y);
+                    y += 8;
+
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(11);
+                    doc.setTextColor(50);
+                    const splitContent = doc.splitTextToSize(sec.content, maxLineWidth);
+                    doc.text(splitContent, margin, y);
+                    y += (splitContent.length * 6) + 10;
+                });
+
+                // Footer
+                const pageHeight = doc.internal.pageSize.getHeight();
+                doc.setFontSize(8);
+                doc.setTextColor(150);
+                doc.text(data.footer, margin, pageHeight - 10);
+
+                doc.save("ASC_Politica_Cookies.pdf");
+            } catch (e) {
+                console.error(e);
+                alert("Erro ao gerar PDF");
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('loading');
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>

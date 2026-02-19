@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessibilidade e Inclusão | ASC Consulting</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* ══════════════════════════════════════════════
+           TOKENS & GLOBAL STYLES
+           ══════════════════════════════════════════════ */
+        :root {
+            --c-navy: #1A3668; --c-navy-dark: #0A1F40;
+            --c-gold: #967938; --c-gold-hover: #B0924B;
+            --c-white: #FFFFFF; --c-off-white: #F8F7F4; --c-border: #E4E8EF;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+            --container-max: 1280px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-sans); color: #444; background: var(--c-off-white); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+        
+        .container { max-width: var(--container-max); margin: 0 auto; padding: 0 2rem; }
+        
+        /* HEADER */
+        .site-header { position: sticky; top: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--c-border); height: 90px; z-index: 1000; display:flex; align-items:center; backdrop-filter: blur(10px); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; width:100%; }
+        .logo { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--c-navy); }
+        .logo span { color: var(--c-gold); }
+        .nav-back { font-family: var(--font-ui); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--c-navy); }
+
+        /* HERO SECTION */
+        .hero { position: relative; padding: 8rem 0 6rem; background: var(--c-navy-dark); color: white; overflow: hidden; }
+        .hero-bg { 
+            position: absolute; inset: 0; opacity: 0.4; 
+            background-image: url('https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80'); 
+            background-size: cover; background-position: center; 
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; text-align: center; }
+        .hero h1 { font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        /* CONTENT LAYOUT */
+        .content-section { padding: 6rem 0; background: white; }
+        .grid-layout { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
+        
+        /* Main Text Styles */
+        .text-content h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--c-navy); margin-top: 3rem; margin-bottom: 1rem; border-bottom: 1px solid var(--c-border); padding-bottom: 0.5rem; }
+        .text-content p { margin-bottom: 1.5rem; text-align: justify; color: var(--c-text-secondary); }
+        .text-content ul { margin-bottom: 2rem; padding-left: 1.5rem; }
+        .text-content li { margin-bottom: 0.8rem; color: var(--c-text-secondary); }
+        .text-content li strong { color: var(--c-navy); }
+
+        /* Sidebar Widgets */
+        .sidebar { position: sticky; top: 120px; height: fit-content; }
+        .widget { background: var(--c-off-white); border: 1px solid var(--c-border); padding: 2rem; margin-bottom: 2rem; border-radius: 4px; }
+        .widget h3 { font-family: var(--font-ui); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-gold); margin-bottom: 1.5rem; font-weight: 700; }
+        
+        .score-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .score-row span { font-weight: 700; color: var(--c-navy); }
+
+        /* DOWNLOAD BAR */
+        .dl-bar {
+            background: var(--c-navy); padding: 1.5rem; color: white; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1); display: flex; justify-content: center;
+        }
+        .dl-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: var(--container-max); padding: 0 2rem; }
+        .dl-btn {
+            background: var(--c-gold); color: white; padding: 1rem 2rem; border-radius: 2px;
+            font-family: var(--font-ui); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            display: flex; align-items: center; gap: 1rem; border: none; cursor: pointer; transition: 0.3s;
+        }
+        .dl-btn:hover { background: white; color: var(--c-navy); }
+        .dl-btn.loading { opacity: 0.8; pointer-events: none; }
+
+        @media(max-width: 1024px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .dl-container { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ASC<span>.</span></a>
+            <a href="centro-de-transparencia.html" class="nav-back">← Voltar</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <span class="eyebrow" style="color:var(--c-gold-pale);">Compromisso Social</span>
+            <h1>Inclusão Digital e<br>Experiência sem Barreiras.</h1>
+            <p>Acreditamos que a inteligência estratégica deve ser acessível a todos. Nosso compromisso é criar experiências digitais visualmente ricas e tecnicamente inclusivas.</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="content-section">
+        <div class="container grid-layout">
+            
+            <!-- TEXT AREA (Adapted Unilever Content) -->
+            <div class="text-content">
+                <p class="lead" style="font-size:1.2rem; color:var(--c-navy); font-weight:500;">
+                    A ASC Consulting tem um compromisso perante a acessibilidade, diversidade e inclusão, integrando abordagens sustentáveis em cada um destes pilares. Acreditamos que todos os nossos clientes, parceiros e visitantes devem ter acesso pleno às nossas plataformas digitais.
+                </p>
+
+                <h2>1. Nossa Abordagem: "Inclusive by Design"</h2>
+                <p>Embarcamos em uma jornada contínua para tornar nossos conteúdos e interfaces mais acessíveis. Uma maneira de conseguir isso é implementando a acessibilidade desde a fase de concepção (design), permitindo que o número máximo de pessoas consiga usar e desfrutar da nossa página web.</p>
+                <p>Projetamos nosso ecossistema digital pensando na compatibilidade com <strong>tecnologias assistivas comuns</strong> e nas diferentes formas que as pessoas visualizam conteúdo online. Nossas práticas incluem:</p>
+                <ul>
+                    <li><strong>Navegação por Teclado:</strong> É possível acessar a maior parte dos elementos interativos sem o uso de mouse.</li>
+                    <li><strong>Marcos de Navegação (ARIA):</strong> Adicionamos marcos estruturais para que leitores de tela compreendam o contexto rapidamente.</li>
+                    <li><strong>Controle de Animação:</strong> Removemos componentes excessivamente animados e permitimos pausar vídeos automáticos.</li>
+                    <li><strong>Texto Alternativo (Alt Text):</strong> A maior parte das imagens, exceto as puramente decorativas, possui descrição por escrito para deficientes visuais.</li>
+                    <li><strong>Escalonamento Responsivo:</strong> Todo o conteúdo se adapta a computadores, tablets e celulares, suportando zoom de até 200% sem perda de funcionalidade.</li>
+                </ul>
+
+                <h2>2. Padrões Técnicos (WCAG)</h2>
+                <p>Esta página web foi desenvolvida para cumprir com as <strong>Diretrizes de Acessibilidade para Conteúdo Web (WCAG) Versão 2.1 Nível AA</strong>. Mantemos a página sob revisão constante para melhorar sua utilidade, seguindo diretrizes internacionalmente acordadas.</p>
+
+                <h2>3. Transparência: Em que estamos trabalhando?</h2>
+                <p>Sabemos que a acessibilidade é um processo contínuo e estamos cientes de alguns pontos de melhoria:</p>
+                <ul>
+                    <li><strong>PDFs Legados:</strong> Sabemos que nem todos os nossos relatórios antigos em PDF estão totalmente acessíveis. Estamos trabalhando para garantir que novos documentos nasçam acessíveis.</li>
+                    <li><strong>Vídeos:</strong> Estamos revisando nossa biblioteca para garantir legendas ocultas (CC) e transcrições em todos os materiais audiovisuais.</li>
+                </ul>
+
+                <h2>4. Feedback e Ajuda</h2>
+                <p>Se você tiver qualquer dificuldade em usar nossa página, por favor, entre em contato. Valorizamos sua opinião para melhorar a experiência.</p>
+                <p><strong>Prazo de Resposta:</strong> Procuramos confirmar a recepção e iniciar a tratativa de todas as questões no prazo de cinco dias úteis.</p>
+            </div>
+
+            <!-- SIDEBAR WIDGETS -->
+            <aside class="sidebar">
+                <!-- Status Widget -->
+                <div class="widget">
+                    <h3>Status de Conformidade</h3>
+                    <div class="score-row">
+                        <span>Padrão</span>
+                        <span style="color:var(--c-gold);">WCAG 2.1</span>
+                    </div>
+                    <div class="score-row">
+                        <span>Nível</span>
+                        <span style="color:var(--c-gold);">AA (Prata)</span>
+                    </div>
+                    <div class="score-row">
+                        <span>Revisão</span>
+                        <span style="color:var(--c-gold);">Fev/2026</span>
+                    </div>
+                </div>
+
+                <!-- Contact Widget -->
+                <div class="widget" style="background:var(--c-navy); color:white; border:none;">
+                    <h3 style="color:var(--c-gold-pale);">Precisa de Suporte?</h3>
+                    <p style="font-size:0.9rem; margin-bottom:1.5rem; opacity:0.9;">
+                        Nosso time de DPO e Tecnologia está pronto para auxiliar em casos de barreiras digitais.
+                    </p>
+                    <a href="mailto:acessibilidade@asc-consulting.com.br" style="display:block; background:white; color:var(--c-navy); text-align:center; padding:0.8rem; font-weight:700; border-radius:2px;">
+                        Relatar Problema
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <div style="height:100px;"></div>
+
+    <!-- DOWNLOAD BAR -->
+    <div class="dl-bar">
+        <div class="dl-container">
+            <div>
+                <strong style="display:block; color:white; font-size:1.1rem;">Declaração Oficial de Acessibilidade</strong>
+                <span style="color:rgba(255,255,255,0.7); font-size:0.85rem;">Gerado em tempo real com base na política vigente (JSON).</span>
+            </div>
+            <button class="dl-btn" onclick="generatePDF()">
+                <i class="fas fa-file-pdf"></i> Baixar Documento Oficial
+            </button>
+        </div>
+    </div>
+
+    <!-- JSON DATA FOR PDF GENERATION -->
+    <script id="policy-data" type="application/json">
+    {
+        "title": "Declaração de Acessibilidade Digital",
+        "company": "ASC Abreu & Sakata Consulting",
+        "date": "18 de Fevereiro de 2026",
+        "intro": "A ASC Consulting tem um compromisso perante a acessibilidade, diversidade e inclusão. Acreditamos que todos os nossos clientes devem ter acesso pleno às nossas plataformas.",
+        "sections": [
+            {
+                "heading": "1. Nossa Abordagem",
+                "content": "Implementamos a acessibilidade desde o início (Inclusive by Design). Nossas páginas suportam navegação por teclado, leitores de tela e zoom responsivo. Imagens possuem texto alternativo e animações podem ser pausadas."
+            },
+            {
+                "heading": "2. Padrões Técnicos",
+                "content": "Seguimos as Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1 Nível AA e a Lei Brasileira de Inclusão (LBI)."
+            },
+            {
+                "heading": "3. Transparência e Melhoria Contínua",
+                "content": "Estamos revisando PDFs legados e vídeos antigos para garantir conformidade total com legendas e tags de leitura."
+            },
+            {
+                "heading": "4. Canal de Suporte",
+                "content": "Caso encontre barreiras, contate acessibilidade@asc-consulting.com.br. Nosso prazo de resposta é de 5 dias úteis."
+            }
+        ],
+        "footer": "Documento gerado eletronicamente via ASC Institutional Hub."
+    }
+    </script>
+
+    <!-- PDF GENERATION SCRIPT -->
+    <script>
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const btn = document.querySelector('.dl-btn');
+            
+            // UI Loading State
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
+            btn.classList.add('loading');
+
+            // 1. Ler dados do JSON
+            const data = JSON.parse(document.getElementById('policy-data').textContent);
+            
+            // 2. Criar Documento PDF
+            const doc = new jsPDF();
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 20;
+            const maxLineWidth = pageWidth - (margin * 2);
+            let y = 20; // Cursor vertical
+
+            // 3. Cabeçalho (Estilo ASC)
+            doc.setFillColor(26, 54, 104); // Navy Blue
+            doc.rect(0, 0, pageWidth, 40, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold");
+            doc.setFontSize(22);
+            doc.text("ASC Consulting", margin, 20);
+            
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text("Relatório de Governança & Acessibilidade", margin, 28);
+
+            y = 60;
+
+            // 4. Título do Documento
+            doc.setTextColor(26, 54, 104); // Navy
+            doc.setFont("times", "bold");
+            doc.setFontSize(18);
+            doc.text(data.title, margin, y);
+            y += 10;
+
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text(`Data de Emissão: ${data.date}`, margin, y);
+            y += 15;
+
+            // 5. Introdução
+            doc.setFont("helvetica", "normal");
+            doc.setTextColor(0);
+            doc.setFontSize(11);
+            const splitIntro = doc.splitTextToSize(data.intro, maxLineWidth);
+            doc.text(splitIntro, margin, y);
+            y += (splitIntro.length * 6) + 10;
+
+            // 6. Loop nas Seções
+            data.sections.forEach(section => {
+                // Check page break
+                if (y > 250) { doc.addPage(); y = 20; }
+
+                // Heading
+                doc.setFont("times", "bold");
+                doc.setFontSize(14);
+                doc.setTextColor(150, 121, 56); // Gold
+                doc.text(section.heading, margin, y);
+                y += 8;
+
+                // Content
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(11);
+                doc.setTextColor(50);
+                const splitContent = doc.splitTextToSize(section.content, maxLineWidth);
+                doc.text(splitContent, margin, y);
+                y += (splitContent.length * 6) + 10;
+            });
+
+            // 7. Rodapé
+            const pageHeight = doc.internal.pageSize.getHeight();
+            doc.setFontSize(8);
+            doc.setTextColor(150);
+            doc.text(data.footer, margin, pageHeight - 10);
+
+            // 8. Salvar
+            doc.save("ASC_Declaracao_Acessibilidade.pdf");
+
+            // Reset UI
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('loading');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

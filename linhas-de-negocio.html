@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linhas de Negócios e Soluções | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --c-white: #FFFFFF;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #1a1a1a; 
+            background: var(--c-white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        
+        .site-header { position: sticky; top: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee; height: 90px; z-index: 1000; display:flex; align-items:center; backdrop-filter: blur(10px); }
+
+        /* background patterns */
+        .bg-grid {
+            background-image: radial-gradient(var(--c-gold-pale) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            opacity: 0.15;
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Premium Service Card Layout */
+        .service-section-header {
+            border-left: 5px solid var(--c-gold);
+            padding-left: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .cta-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            padding: 3rem;
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        .cta-card:hover {
+            border-color: var(--c-gold);
+            box-shadow: 0 30px 50px -15px rgba(26, 54, 104, 0.1);
+            transform: scale(1.02);
+        }
+
+        .agri-block {
+            background: var(--c-navy-dark);
+            color: white;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .agri-block::after {
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(45deg, rgba(212, 184, 120, 0.03) 0, rgba(212, 184, 120, 0.03) 1px, transparent 1px, transparent 15px);
+        }
+
+        .btn-gold {
+            background: var(--c-gold);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .btn-gold:hover { background: var(--c-navy-dark); }
+
+        .partner-photo {
+            width: 100%; aspect-ratio: 4/5; object-fit: cover;
+            filter: grayscale(100%); transition: filter 0.5s, transform 0.5s;
+            border-bottom: 4px solid var(--c-gold);
+        }
+        .partner-box:hover .partner-photo { filter: grayscale(0%); transform: scale(1.02); }
+
+        /* Linhas Douradas de Fundo */
+        .geometric-bg {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></a>
+            <nav class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="sobre-a-asc.html" class="hover:text-[#967938] transition-colors">A Boutique</a>
+                <a href="#solucoes" class="text-[#967938] border-b-2 border-[#967938] pb-1">Soluções</a>
+                <a href="centro-de-transparencia.html" class="hover:text-[#967938] transition-colors">Governança</a>
+            </nav>
+            <a href="solicitacao-servicos.html" class="bg-[#1A3668] text-white px-6 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Agendar Diagnóstico</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative bg-[#0A1F40] pt-32 pb-44 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-4xl">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.3em] mb-6 block">Expertise e Governança</span>
+                <h1 class="serif text-5xl md:text-8xl mb-8 leading-tight">Complexidade em<br><span class="italic text-[#D4B878]">Valor Sustentável</span>.</h1>
+                <p class="text-lg md:text-2xl opacity-80 max-w-2xl leading-relaxed border-l-2 border-[#967938] pl-8">
+                    Unimos o rigor técnico das melhores consultorias do mercado à agilidade para converter desafios operacionais em resultados perenes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01. CONSULTORIA CONTÁBIL FINANCEIRA E TRIBUTÁRIA (REPROJETADA) -->
+    <section id="solucoes" class="py-24 bg-white relative">
+        <div class="geometric-bg">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+                <line x1="0" y1="20" x2="100" y2="20" stroke="var(--c-gold)" stroke-width="0.1" />
+                <line x1="0" y1="40" x2="100" y2="40" stroke="var(--c-gold)" stroke-width="0.1" />
+                <line x1="0" y1="60" x2="100" y2="60" stroke="var(--c-gold)" stroke-width="0.1" />
+                <line x1="20" y1="0" x2="20" y2="100" stroke="var(--c-gold)" stroke-width="0.1" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="service-section-header reveal">
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-4">Consultoria Contábil Financeira e Tributária</h2>
+                <p class="text-xl text-[#967938] font-medium italic">Precisão técnica para a integridade do seu capital.</p>
+            </div>
+
+            <!-- GRID INTERCALADA COM IMAGENS E CTAS REAIS -->
+            <div class="grid lg:grid-cols-2 gap-16 items-stretch mb-20">
+                
+                <!-- Card Problema Crescimento -->
+                <div class="cta-card reveal">
+                    <div>
+                        <span class="text-[#967938] text-[10px] font-bold uppercase mb-4 block">Estratégia & Roadmap</span>
+                        <h3 class="serif text-3xl text-[#1A3668] mb-6">Sua empresa cresceu exponencialmente e precisa redirecionar o roadmap?</h3>
+                        <p class="text-gray-500 mb-8">O crescimento acelerado gera silos operacionais. Ajudamos a alinhar o curto e o longo prazo com uma matriz de risco e diagnóstico de processos robusto.</p>
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Redirecionar Estratégia</a>
+                </div>
+
+                <!-- Card IFRS 18 -->
+                <div class="cta-card reveal bg-[#F8F7F4] border-none" style="transition-delay: 0.1s;">
+                    <div>
+                        <span class="text-[#967938] text-[10px] font-bold uppercase mb-4 block">Novas Normas</span>
+                        <h3 class="serif text-3xl text-[#1A3668] mb-6">Você está preparado para a nova IFRS 18?</h3>
+                        <p class="text-gray-500 mb-8">A nova norma de apresentação e divulgação das demonstrações financeiras exige uma mudança estrutural no reporte corporativo. Não deixe para a última hora.</p>
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Garantir Adequação</a>
+                </div>
+
+                <!-- Card Reforma Tributária -->
+                <div class="lg:col-span-2 cta-card reveal border-l-8 border-[#1A3668]">
+                    <div class="grid md:grid-cols-2 gap-10 items-center">
+                        <div>
+                            <h3 class="serif text-4xl text-[#1A3668] mb-6">Você está por dentro das alterações da nova Reforma Tributária?</h3>
+                            <p class="text-gray-600 mb-8">A transição tributária será o maior desafio das empresas brasileiras nesta década. Aqui na ASC Consulting temos o time sênior para apoiar você nesta jornada de conformidade e planejamento.</p>
+                            <a href="solicitacao-servicos.html" class="btn-gold">Falar com nosso Time Tributário</a>
+                        </div>
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1554224155-16974a44453c?auto=format&fit=crop&q=80" alt="Reforma Tributária" class="rounded shadow-xl grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card IPO -->
+                <div class="cta-card reveal">
+                    <div>
+                        <span class="text-[#967938] text-[10px] font-bold uppercase mb-4 block">Mercado de Capitais</span>
+                        <h3 class="serif text-3xl text-[#1A3668] mb-6">Está planejando um IPO ou transação relevante?</h3>
+                        <p class="text-gray-500 mb-8">A integridade do capital exige documentação técnica impecável de Recuperabilidade de Ativos (Impairment) e elaboração de demonstrações conforme CPC/IFRS.</p>
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Preparar Auditoria</a>
+                </div>
+
+                <!-- Card Consolidação -->
+                <div class="cta-card reveal">
+                    <div>
+                        <span class="text-[#967938] text-[10px] font-bold uppercase mb-4 block">M&A & Consolidação</span>
+                        <h3 class="serif text-3xl text-[#1A3668] mb-6">Sua empresa possui expertise em Consolidação de Negócios?</h3>
+                        <p class="text-gray-500 mb-8">A consolidação de balanços e a estruturação de planos baseados em ações exigem laudos especializados para embasar transações contábeis seguras.</p>
+                    </div>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Consultar Especialista</a>
+                </div>
+
+                <!-- Card Arrendamento -->
+                <div class="lg:col-span-2 cta-card reveal bg-[#FDFCFB] border-dashed border-2 border-[#D4B878]">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                        <div class="md:w-2/3">
+                            <h3 class="serif text-3xl text-[#1A3668] mb-4">Arrendamento Mercantil & IFRS 16</h3>
+                            <p class="text-gray-500">Oferecemos consultoria completa para o cálculo e reporte de arrendamentos, garantindo que sua dívida e ativos reflitam a realidade econômica do negócio.</p>
+                        </div>
+                        <a href="solicitacao-servicos.html" class="btn-gold">Saiba mais</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 02. TRANSAÇÕES CORPORATIVAS E ESTRUTURAÇÃO -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="service-section-header reveal">
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-4">Transações Corporativas e Estruturação</h2>
+                <p class="text-xl text-[#967938] font-medium italic">Inteligência e segurança em momentos decisivos.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80" alt="M&A Advisory" class="rounded shadow-xl">
+                </div>
+                <div class="cta-card reveal">
+                    <h3 class="serif text-3xl text-[#1A3668] mb-6">Assessoria Estratégica M&A</h3>
+                    <p class="text-gray-600 mb-8 leading-relaxed">Condução de reorganizações societárias, due diligences financeiras, tributárias, trabalhistas e previdenciárias. Preparação estruturada de data room e elaboração de Valuation e PPA.</p>
+                    <a href="solicitacao-servicos.html" class="btn-gold">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGRO CHALLENGE BLOCK -->
+    <section class="agri-block reveal">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <span class="text-[#D4B878] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">Foco no Agronegócio</span>
+                <h2 class="serif text-4xl md:text-5xl mb-6">Governança Familiar no Campo: O maior PIB do Brasil.</h2>
+                <p class="text-lg opacity-80 mb-10 leading-relaxed">Holdings rurais e produtores de middle marketing enfrentam pressões por profissionalização e sucessão. Nossa consultoria traz o rigor técnico necessário para proteger o patrimônio da terra.</p>
+                <a href="solicitacao-servicos.html" class="btn-gold">Saiba mais</a>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1595066395345-0d05719321ba?auto=format&fit=crop&q=80" alt="Agronegócio Brasil" class="rounded shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. GOVERNANÇA E CONSELHOS -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="service-section-header reveal">
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-4">Governança e Conselhos</h2>
+                <p class="text-xl text-[#967938] font-medium italic">Liderança que projeta a perenidade do negócio.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="cta-card reveal">
+                    <h3 class="serif text-2xl mb-4">Conselhos Consultivos</h3>
+                    <p class="text-sm text-gray-500 mb-8">Apoio na estruturação e atuação em colegiados não estatutários para suporte estratégico C-Level.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+                <div class="cta-card reveal" style="transition-delay: 0.1s;">
+                    <h3 class="serif text-2xl mb-4">Programas de Sucessão</h3>
+                    <p class="text-sm text-gray-500 mb-8">Estruturação de sucessão que promova a equidade de gênero e pluralidade em ambientes de decisão.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+                <div class="cta-card reveal" style="transition-delay: 0.2s;">
+                    <h3 class="serif text-2xl mb-4">Mentoria Executiva</h3>
+                    <p class="text-sm text-gray-500 mb-8">Definição de metas e aconselhamento estratégico para executivos em transição ou expansão de carreira.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04. EMPODERAR PARA CRESCER -->
+    <section class="py-24 bg-[#0A1F40] text-white overflow-hidden relative">
+        <div class="absolute inset-0 bg-grid opacity-5"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="service-section-header reveal" style="border-color: var(--c-gold-pale);">
+                <h2 class="serif text-4xl md:text-6xl mb-4">Empoderar para Crescer</h2>
+                <p class="text-xl text-[#D4B878] font-medium italic">Liderança que transforma e potencializa o protagonismo feminino.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="cta-card reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">
+                    <h3 class="serif text-2xl text-white mb-4">Aceleração C-Level</h3>
+                    <p class="text-sm text-gray-400 mb-8">Fortalecimento da autoconfiança executiva e preparação para a ocupação de assentos em Conselhos.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#D4B878] hover:text-white flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+                <div class="cta-card reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); transition-delay: 0.1s;">
+                    <h3 class="serif text-2xl text-white mb-4">Personal Branding</h3>
+                    <p class="text-sm text-gray-400 mb-8">Consultoria de branding corporativo e desenvolvimento de competências políticas para alta gestão.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#D4B878] hover:text-white flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+                <div class="cta-card reveal" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); transition-delay: 0.2s;">
+                    <h3 class="serif text-2xl text-white mb-4">Fator Humano (NR 01)</h3>
+                    <p class="text-sm text-gray-400 mb-8">Gestão de mudanças focada em ESG e suporte psicossocial alinhado às diretrizes da NR 01.</p>
+                    <a href="solicitacao-servicos.html" class="text-xs font-bold uppercase tracking-widest text-[#D4B878] hover:text-white flex items-center gap-2">Saiba mais <i class="fas fa-arrow-right text-[8px]"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. DIGITAL & PROCESS AUTOMATION -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="service-section-header reveal">
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-4">Digital & Process Automation</h2>
+                <p class="text-xl text-[#967938] font-medium italic">Eficiência operacional através de tecnologia estratégica.</p>
+            </div>
+            <div class="cta-card reveal">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="serif text-3xl text-[#1A3668] mb-6">Automação de Backoffice Financeiro</h3>
+                        <p class="text-gray-600 mb-8 leading-relaxed">Elimine falhas operacionais e reduza o tempo de fechamento. Integramos tecnologias de ponta para que seu backoffice gere inteligência, não apenas papel.</p>
+                        <a href="solicitacao-servicos.html" class="btn-gold">Saiba mais</a>
+                    </div>
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" alt="Automação de Processos" class="rounded shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VAMOS CONVERSAR? (COM FOTOS DAS SÓCIAS) -->
+    <section id="contato" class="bg-[#0A1F40] py-32 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <!-- Informações de Contato -->
+                <div class="lg:w-1/2 space-y-10 text-center lg:text-left">
+                    <div class="reveal">
+                        <h2 class="serif text-6xl mb-6">Vamos Conversar?</h2>
+                        <p class="text-xl opacity-70 mb-10">Prontos para elevar o patamar da sua governança e estratégia.</p>
+                    </div>
+
+                    <div class="space-y-6 reveal">
+                        <a href="mailto:contato@abreusakataconsulting.com.br" class="flex items-center gap-4 group justify-center lg:justify-start">
+                            <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#D4B878] transition-all">
+                                <i class="fas fa-envelope text-[#D4B878]"></i>
+                            </div>
+                            <span class="text-xs font-bold tracking-widest uppercase">contato@abreusakataconsulting.com.br</span>
+                        </a>
+                        <a href="https://linkedin.com/company/asc-consultoria" target="_blank" class="flex items-center gap-4 group justify-center lg:justify-start">
+                            <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#D4B878] transition-all">
+                                <i class="fab fa-linkedin-in text-[#D4B878]"></i>
+                            </div>
+                            <span class="text-xs font-bold tracking-widest uppercase">linkedin.com/company/asc-consultoria</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-10 reveal">
+                        <a href="solicitacao-servicos.html" class="btn-gold px-12 py-5 scale-110">Agendar Diagnóstico Estratégico <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Fotos das Sócias (Vania e Patricia) -->
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6 reveal">
+                    <!-- Vania -->
+                    <div class="partner-box space-y-4">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Vânia Abreu" class="partner-photo">
+                            <div class="absolute top-2 right-2 px-2 py-1 bg-[#D4B878] text-[#0A1F40] text-[8px] font-bold uppercase tracking-widest">Socia Fundadora</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <h5 class="serif text-xl">Vânia Abreu</h5>
+                            <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Diretora Executiva | ex-EY</p>
+                        </div>
+                    </div>
+                    <!-- Patricia -->
+                    <div class="partner-box space-y-4">
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80" alt="Patrícia Sakata" class="partner-photo">
+                            <div class="absolute top-2 right-2 px-2 py-1 bg-[#D4B878] text-[#0A1F40] text-[8px] font-bold uppercase tracking-widest">Socia Fundadora</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <h5 class="serif text-xl">Patrícia Sakata</h5>
+                            <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Estratégia Digital | ex-EY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-white text-center border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+        </div>
+    </footer>
+
+    <!-- REVEAL ENGINE -->
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

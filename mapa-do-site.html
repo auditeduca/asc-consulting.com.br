@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap e Arquitetura de Informação | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-dark: #7A5F20;
+            --c-white: #FFFFFF;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #1a1a1a; /* Contraste AAA (Preto quase puro) */
+            background: var(--c-white); 
+            line-height: 1.8;
+            transition: font-size 0.2s ease;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        .marinho { color: var(--c-navy); }
+        .ouro { color: var(--c-gold-dark); }
+
+        /* FOCO ACESSÍVEL AAA */
+        a:focus, button:focus {
+            outline: 3px solid var(--c-gold);
+            outline-offset: 4px;
+        }
+
+        /* LINKS AAA (Cor + Sublinhado/Ícone) */
+        .sitemap-link {
+            color: var(--c-navy);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sitemap-link:hover {
+            color: var(--c-gold-dark);
+            text-decoration-thickness: 2px;
+        }
+
+        /* CONTROLES AAA */
+        .aaa-controls {
+            position: fixed;
+            top: 110px;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 90;
+        }
+        .ctrl-btn {
+            background: var(--c-navy);
+            color: white;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-card {
+            border: 1px solid #ddd;
+            padding: 2.5rem;
+            height: 100%;
+            background: var(--c-off-white);
+        }
+
+        /* PDF Sidebar Pattern */
+        .doc-cover {
+            background: white; width: 100%; aspect-ratio: 1/1.414; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative;
+            display: flex; flex-direction: column; padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .dc-header { height: 40%; background: var(--c-navy); margin: -1.5rem -1.5rem 1.5rem -1.5rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- CONTROLES DE ACESSIBILIDADE AAA -->
+    <div class="aaa-controls" role="region" aria-label="Controles de Acessibilidade">
+        <button onclick="changeFontSize(1)" class="ctrl-btn" title="Aumentar Texto" aria-label="Aumentar tamanho do texto">A+</button>
+        <button onclick="changeFontSize(-1)" class="ctrl-btn" title="Diminuir Texto" aria-label="Diminuir tamanho do texto">A-</button>
+        <button onclick="resetFontSize()" class="ctrl-btn" title="Resetar Texto" aria-label="Resetar tamanho do texto"><i class="fas fa-undo"></i></button>
+    </div>
+
+    <!-- HEADER -->
+    <header id="site-header" class="fixed top-0 left-0 w-full bg-white border-b-2 border-[#1A3668] z-[100] h-[90px] flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]" aria-label="ASC Consulting Home">ASC<span class="text-[#967938]">.</span></a>
+            <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-[#1A3668]" aria-label="Menu Principal">
+                <a href="sobre-a-asc.html" class="hover:underline">Institucional</a>
+                <a href="sustentabilidade-carbono.html" class="hover:underline">ESG</a>
+                <a href="de-olho-na-acessibilidade-v2.html" class="hover:underline">Acessibilidade</a>
+            </nav>
+            <a href="centro-de-transparencia.html" class="text-[10px] font-bold uppercase tracking-widest bg-[#1A3668] text-white px-4 py-2 hover:bg-[#967938]">← Transparência</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="bg-[#0A1F40] pt-[140px] pb-24 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">Arquitetura de Informação</span>
+                <h1 class="serif text-5xl md:text-7xl mb-6 leading-tight">Mapa do Site.</h1>
+                <p class="text-xl opacity-90 leading-relaxed border-l-4 border-[#967938] pl-6">
+                    Acesso universal e navegação estruturada. Encontre todos os ativos, políticas e canais da ASC em um único local, otimizado para padrões AAA.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SITEMAP GRID -->
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <div class="grid lg:grid-cols-12 grid-cols-1 gap-12">
+            
+            <!-- LISTA DE LINKS (Esquerda) -->
+            <div class="lg:col-span-8 space-y-12">
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Institucional -->
+                    <section class="category-card" aria-labelledby="cat-institucional">
+                        <h2 id="cat-institucional" class="serif text-2xl marinho mb-6 border-b-2 border-[#D4B878] pb-2">Institucional</h2>
+                        <ul class="space-y-4" role="list">
+                            <li><a href="index.html" class="sitemap-link"><i class="fas fa-home" aria-hidden="true"></i> Página Inicial</a></li>
+                            <li><a href="sobre-a-asc.html" class="sitemap-link"><i class="fas fa-building" aria-hidden="true"></i> Sobre a ASC Consulting</a></li>
+                            <li><a href="#" class="sitemap-link"><i class="fas fa-users" aria-hidden="true"></i> Equipe e Liderança</a></li>
+                            <li><a href="contato.html" class="sitemap-link"><i class="fas fa-envelope" aria-hidden="true"></i> Canal de Atendimento</a></li>
+                        </ul>
+                    </section>
+
+                    <!-- Governança & Transparência -->
+                    <section class="category-card" aria-labelledby="cat-governanca">
+                        <h2 id="cat-governanca" class="serif text-2xl marinho mb-6 border-b-2 border-[#D4B878] pb-2">Transparência</h2>
+                        <ul class="space-y-4" role="list">
+                            <li><a href="centro-de-transparencia.html" class="sitemap-link"><i class="fas fa-shield-alt" aria-hidden="true"></i> Hub de Governança</a></li>
+                            <li><a href="politica-privacidade.html" class="sitemap-link"><i class="fas fa-lock" aria-hidden="true"></i> Privacidade e LGPD</a></li>
+                            <li><a href="sustentabilidade.html" class="sitemap-link"><i class="fas fa-leaf" aria-hidden="true"></i> Sustentabilidade Digital</a></li>
+                            <li><a href="acessibilidade.html" class="sitemap-link"><i class="fas fa-universal-access" aria-hidden="true"></i> Acessibilidade Web</a></li>
+                            <li><a href="politica-cookies.html" class="sitemap-link"><i class="fas fa-cookie-bite" aria-hidden="true"></i> Política de Cookies</a></li>
+                            <li><a href="termos-de-uso.html" class="sitemap-link"><i class="fas fa-file-contract" aria-hidden="true"></i> Termos de Uso</a></li>
+                        </ul>
+                    </section>
+
+                    <!-- Auditoria & Insights -->
+                    <section class="category-card" aria-labelledby="cat-auditoria">
+                        <h2 id="cat-auditoria" class="serif text-2xl marinho mb-6 border-b-2 border-[#D4B878] pb-2">Auditoria Digital</h2>
+                        <ul class="space-y-4" role="list">
+                            <li><a href="sustentabilidade-carbono.html" class="sitemap-link"><i class="fas fa-chart-bar" aria-hidden="true"></i> De Olho no Carbono</a></li>
+                            <li><a href="de-olho-na-acessibilidade-v2.html" class="sitemap-link"><i class="fas fa-search" aria-hidden="true"></i> De Olho na Acessibilidade</a></li>
+                            <li><a href="busca-e-conteudo.html" class="sitemap-link"><i class="fas fa-search-plus" aria-hidden="true"></i> Índice de Conteúdo</a></li>
+                        </ul>
+                    </section>
+
+                    <!-- Serviços -->
+                    <section class="category-card" aria-labelledby="cat-servicos">
+                        <h2 id="cat-servicos" class="serif text-2xl marinho mb-6 border-b-2 border-[#D4B878] pb-2">Serviços</h2>
+                        <ul class="space-y-4" role="list">
+                            <li><a href="#" class="sitemap-link"><i class="fas fa-calculator" aria-hidden="true"></i> Consultoria Contábil</a></li>
+                            <li><a href="#" class="sitemap-link"><i class="fas fa-briefcase" aria-hidden="true"></i> M&A e Transações</a></li>
+                            <li><a href="#" class="sitemap-link"><i class="fas fa-chess" aria-hidden="true"></i> Estratégia B2B</a></li>
+                            <li><a href="#" class="sitemap-link"><i class="fas fa-female" aria-hidden="true"></i> Mentoria Feminina</a></li>
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR PADRÃO (Direita) -->
+            <aside class="lg:col-span-4 space-y-8">
+                <!-- Widget Índice -->
+                <div class="bg-white p-8 border-2 border-[#1A3668] shadow-lg">
+                    <h3 class="text-xs font-bold text-[#967938] uppercase tracking-widest mb-4">Arquitetura AAA</h3>
+                    <p class="text-sm text-gray-600 mb-6">Esta página foi otimizada para conformidade máxima. Encontre caminhos alternativos para qualquer informação do portal.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase text-[#1A3668]"><i class="fas fa-check"></i> Contraste 7:1</div>
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase text-[#1A3668]"><i class="fas fa-check"></i> Navegação Teclado</div>
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase text-[#1A3668]"><i class="fas fa-check"></i> Labels Semânticas</div>
+                    </div>
+                </div>
+
+                <!-- Widget Capa Preview -->
+                <div class="bg-[#F8F7F4] p-8 border border-gray-200 text-center">
+                    <h3 class="text-xs font-bold text-[#1A3668] uppercase mb-4">Relatório de Estrutura</h3>
+                    <div class="doc-cover mx-auto max-w-[200px]">
+                        <div class="dc-header"></div>
+                        <div class="text-left">
+                            <h4 class="serif font-bold text-navy-dark leading-none">Sitemap<br>Oficial</h4>
+                            <div class="mt-4 space-y-1">
+                                <div class="h-1 bg-gray-100 w-full"></div>
+                                <div class="h-1 bg-gray-100 w-3/4"></div>
+                            </div>
+                            <div class="mt-8 text-[8px] font-bold text-gold uppercase">ASC Consulting</div>
+                        </div>
+                    </div>
+                    <button onclick="downloadSitemapPDF()" class="w-full mt-6 py-4 bg-[#1A3668] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#967938]">
+                        Baixar Mapa (PDF)
+                    </button>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-2 border-[#1A3668] py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-gray-500">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+                <p class="text-[9px] text-gray-400 mt-1 uppercase">Padrão de Acessibilidade WCAG 2.1 AAA Compliant</p>
+            </div>
+            <div class="flex gap-8 text-[#1A3668]">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-xl"></i></a>
+                <a href="#" aria-label="E-mail"><i class="fas fa-envelope text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON DATA FOR SITEMAP PDF -->
+    <script id="sitemap-data" type="application/json">
+    {
+        "title": "Mapa do Site e Arquitetura de Informação",
+        "company": "ASC Abreu & Sakata Consulting",
+        "version": "2026.1",
+        "categories": [
+            { "name": "Institucional", "links": ["Home", "Sobre a ASC", "Equipe", "Contato"] },
+            { "name": "Governança", "links": ["Centro de Transparência", "Privacidade", "Sustentabilidade", "Acessibilidade", "Cookies", "Termos"] },
+            { "name": "Auditoria", "links": ["De Olho no Carbono", "De Olho na Acessibilidade", "Busca Inteligente"] },
+            { "name": "Serviços", "links": ["Contábil", "M&A", "Estratégia", "Mentoria"] }
+        ]
+    }
+    </script>
+
+    <script>
+        // CONTROLE DE FONTE AAA
+        let currentFontSize = 100;
+        function changeFontSize(delta) {
+            currentFontSize += (delta * 10);
+            if (currentFontSize < 80) currentFontSize = 80;
+            if (currentFontSize > 150) currentFontSize = 150;
+            document.body.style.fontSize = currentFontSize + '%';
+        }
+        function resetFontSize() {
+            currentFontSize = 100;
+            document.body.style.fontSize = '100%';
+        }
+
+        // GERADOR DE PDF
+        function downloadSitemapPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const data = JSON.parse(document.getElementById('sitemap-data').textContent);
+            
+            doc.setFillColor(26, 54, 104);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold"); doc.setFontSize(22);
+            doc.text("ASC Consulting", 20, 25);
+            doc.setFontSize(10); doc.text("Sitemap e Arquitetura Institucional", 20, 32);
+
+            doc.setTextColor(17, 17, 17);
+            doc.setFontSize(16);
+            doc.text(data.title, 20, 60);
+            
+            let y = 80;
+            data.categories.forEach(cat => {
+                doc.setFont("times", "bold"); doc.setFontSize(14); doc.setTextColor(150, 121, 56);
+                doc.text(cat.name, 20, y);
+                y += 8;
+                doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(50);
+                cat.links.forEach(link => {
+                    doc.text("- " + link, 25, y);
+                    y += 6;
+                });
+                y += 10;
+            });
+
+            doc.save("ASC_Sitemap_Oficial.pdf");
+        }
+    </script>
+</body>
+</html>

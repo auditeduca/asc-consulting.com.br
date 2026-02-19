@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca Inteligente e Índice de Ativos | ASC Consulting</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-dark: #7A5F20;
+            --c-white: #FFFFFF;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #1a1a1a; 
+            background: var(--c-white); 
+            line-height: 1.6;
+            scroll-padding-top: 100px;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        
+        /* ACESSIBILIDADE AAA */
+        .high-contrast-text { color: #111; }
+        a:focus, button:focus, input:focus {
+            outline: 3px solid var(--c-gold);
+            outline-offset: 3px;
+        }
+
+        /* SEARCH UI */
+        .search-container {
+            position: relative;
+            background: var(--c-white);
+            border: 2px solid var(--c-navy);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .search-container:focus-within {
+            box-shadow: 0 15px 40px rgba(26, 54, 104, 0.15);
+            border-color: var(--c-gold);
+        }
+
+        /* BUSINESS FILTERS */
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #ddd;
+            background: white;
+            color: var(--c-navy);
+            transition: 0.2s;
+            border-radius: 2px;
+        }
+        .filter-btn:hover { border-color: var(--c-gold); color: var(--c-gold-dark); }
+        .filter-btn.active {
+            background: var(--c-navy);
+            color: white;
+            border-color: var(--c-navy);
+            box-shadow: 0 4px 12px rgba(26, 54, 104, 0.2);
+        }
+
+        /* TAGS & BADGES */
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.6rem;
+            background: var(--c-off-white);
+            color: var(--c-navy);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #e2e8f0;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .tag-pill:hover { background: var(--c-gold); color: white; }
+
+        /* RESULTS LIST */
+        .result-item {
+            padding: 2.5rem;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .result-item:hover { background: var(--c-off-white); }
+        .result-item::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; 
+            background: transparent; transition: background 0.3s;
+        }
+        .result-item:hover::before { background: var(--c-gold); }
+
+        /* ANIMATIONS */
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+        .scanning-line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--c-gold);
+            animation: scan 2s linear infinite;
+        }
+
+        /* Sidebar Doc Preview */
+        .doc-cover {
+            background: white; width: 100%; aspect-ratio: 1/1.414; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative;
+            display: flex; flex-direction: column; padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .dc-header { height: 40%; background: var(--c-navy); margin: -1.5rem -1.5rem 1.5rem -1.5rem; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER -->
+    <header id="site-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md border-b-2 border-[#1A3668] z-[100] h-[90px] flex items-center shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></a>
+            <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="sitemap.html" class="hover:text-[#967938]">Mapa do Site</a>
+                <a href="sustentabilidade-carbono.html" class="hover:text-[#967938]">ESG</a>
+                <a href="de-olho-na-acessibilidade-v2.html" class="hover:text-[#967938]">Acessibilidade</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <span id="index-status" class="text-[9px] font-bold uppercase text-green-600 bg-green-50 px-2 py-1 rounded">Indexador: Online</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO / SEARCH BAR SECTION -->
+    <section class="bg-[#0A1F40] pt-[140px] pb-24 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">Inteligência de Ativos</span>
+                <h1 class="serif text-5xl md:text-6xl mb-6 leading-tight">Busca e <span class="italic text-[#D4B878]">Portfolio</span>.</h1>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Search Input -->
+                <div class="search-container flex items-center p-2 rounded-sm overflow-hidden bg-white mb-8">
+                    <i class="fas fa-search text-[#1A3668] ml-4 text-xl"></i>
+                    <input type="text" id="main-search" onkeyup="runSearch()" placeholder="O que você está procurando? (Ex: M&A, IFRS, Governança...)" 
+                           class="w-full p-4 text-lg text-gray-800 outline-none placeholder:text-gray-300 font-sans">
+                </div>
+                
+                <!-- Business Line Filters -->
+                <div class="flex flex-wrap justify-center gap-3" id="business-filters">
+                    <button onclick="filterByCategory('all')" class="filter-btn active" data-cat="all">Todos os Ativos</button>
+                    <button onclick="filterByCategory('Contábil')" class="filter-btn" data-cat="Contábil">Contábil & Tributário</button>
+                    <button onclick="filterByCategory('Transações')" class="filter-btn" data-cat="Transações">M&A & Transações</button>
+                    <button onclick="filterByCategory('Governança')" class="filter-btn" data-cat="Governança">ESG & Governança</button>
+                    <button onclick="filterByCategory('Liderança')" class="filter-btn" data-cat="Liderança">Liderança Feminina</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN RESULTS AREA -->
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid lg:grid-cols-12 grid-cols-1 gap-12">
+            
+            <!-- RESULTADOS (Esquerda) -->
+            <div class="lg:col-span-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-gray-100 gap-4">
+                    <div>
+                        <h2 class="serif text-2xl text-[#1A3668]" id="result-count">Explorando ativos institucionais</h2>
+                        <p class="text-[10px] text-gray-400 font-bold uppercase mt-1" id="filter-indicator">Exibindo: Todos os serviços</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <select onchange="sortResults(this.value)" class="text-[10px] font-bold uppercase bg-transparent outline-none cursor-pointer text-[#967938] border border-[#D4B878] px-3 py-1">
+                            <option value="relevance">Relevância</option>
+                            <option value="alphabetical">A-Z</option>
+                            <option value="newest">Últimas Atualizações</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Lista de Resultados -->
+                <div id="results-list" class="space-y-4">
+                    <!-- Gerado dinamicamente via engine JS -->
+                </div>
+                
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden py-32 text-center">
+                    <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search-minus text-2xl text-gray-300"></i>
+                    </div>
+                    <h4 class="serif text-xl text-[#1A3668] mb-2">Sem resultados para sua seleção</h4>
+                    <p class="text-sm text-gray-400">Tente ajustar o termo de busca ou selecionar outra linha de negócio.</p>
+                </div>
+            </div>
+
+            <!-- SIDEBAR INDEXER (Direita) -->
+            <aside class="lg:col-span-4 space-y-8">
+                
+                <!-- Status do Indexador -->
+                <div class="bg-white p-8 border-2 border-[#1A3668] shadow-lg relative overflow-hidden">
+                    <div id="sync-overlay" class="hidden absolute inset-0 bg-white/90 z-10 flex items-center justify-center flex-col">
+                        <div class="scanning-line"></div>
+                        <i class="fas fa-sync fa-spin text-2xl text-[#1A3668] mb-4"></i>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-[#1A3668]">Mapeando Sitemap...</p>
+                    </div>
+                    
+                    <h3 class="text-[10px] font-bold text-[#967938] uppercase tracking-widest mb-4 border-b pb-2">Governança Técnica</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-gray-500">Mapeamento Global</span>
+                            <span class="font-bold text-[#1A3668]" id="last-sync-time">Fev 2026</span>
+                        </div>
+                        <div class="flex justify-between text-[11px]">
+                            <span class="text-gray-500">Ativos Processados</span>
+                            <span class="font-bold text-[#1A3668]" id="indexed-count">14 Páginas</span>
+                        </div>
+                        <button onclick="rebuildIndex()" class="w-full mt-4 py-3 border border-[#1A3668] text-[#1A3668] text-[9px] font-bold uppercase tracking-widest hover:bg-[#1A3668] hover:text-white transition-all">
+                            <i class="fas fa-sync-alt mr-2"></i> Forçar Reindexação de Tags
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Download Index -->
+                <div class="bg-[#F8F7F4] p-8 border border-gray-200 text-center">
+                    <h3 class="text-[10px] font-bold text-[#1A3668] uppercase mb-4">Portfólio Estratégico</h3>
+                    <div class="doc-cover mx-auto max-w-[180px] mb-6">
+                        <div class="dc-header"></div>
+                        <div class="text-left p-4">
+                            <h4 class="serif font-bold text-[#1A3668] text-sm leading-tight">Portfólio de<br>Serviços ASC</h4>
+                            <div class="mt-4 space-y-1">
+                                <div class="h-1 bg-gray-100 w-full"></div>
+                                <div class="h-1 bg-gray-100 w-3/4"></div>
+                            </div>
+                            <div class="mt-6 text-[8px] font-bold text-[#967938]">VIGÊNCIA 2026</div>
+                        </div>
+                    </div>
+                    <button onclick="downloadIndexPDF()" class="w-full py-4 bg-[#1A3668] text-white text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] shadow-md">
+                        Baixar Catálogo (PDF)
+                    </button>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-2 border-[#1A3668] py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+            <div class="flex gap-6">
+                <a href="#" class="text-[#1A3668] hover:text-[#967938] transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-lg"></i></a>
+                <a href="#" class="text-[#1A3668] hover:text-[#967938] transition-colors" aria-label="Contato"><i class="fas fa-envelope text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ENGINE DE BUSCA & DATASET -->
+    <script>
+        // Dataset consolidado cruzando Sitemap e Linhas de Negócio da ASC
+        const siteIndex = [
+            {
+                title: "Consultoria Contábil, Financeira e Tributária",
+                desc: "Diagnóstico de processos, políticas contábeis (CPC/IFRS) e planejamento estratégico alinhado à governança corporativa.",
+                path: "servicos.html",
+                category: "Contábil",
+                tags: ["IFRS", "CPC", "Tributário", "Demonstrações Financeiras"],
+                date: "2026-02-18"
+            },
+            {
+                title: "Transações Corporativas e M&A",
+                desc: "Assessoria estratégica em fusões, aquisições e reestruturações. Due Diligence completa e Valuation especializado.",
+                path: "servicos.html",
+                category: "Transações",
+                tags: ["M&A", "Due Diligence", "Valuation", "Societário"],
+                date: "2026-02-18"
+            },
+            {
+                title: "Governança Humana e ESG",
+                desc: "Sustentabilidade corporativa, equidade de gênero e gestão de mudanças focada em perenidade.",
+                path: "sustentabilidade-carbono.html",
+                category: "Governança",
+                tags: ["ESG", "NR 01", "Cultura Organizacional", "Sustentabilidade"],
+                date: "2026-02-18"
+            },
+            {
+                title: "Programa Empoderar para Crescer",
+                desc: "Metodologia exclusiva para aceleração de liderança feminina e preparação para cargos C-Level e Conselhos.",
+                path: "sobre-a-asc.html",
+                category: "Liderança",
+                tags: ["Liderança Feminina", "C-Level", "Mentoria", "Patente"],
+                date: "2026-02-18"
+            },
+            {
+                title: "De Olho na Acessibilidade Digital",
+                desc: "Auditoria técnica de inclusão e conformidade com padrões WCAG 2.1 e LBI em ativos digitais.",
+                path: "de-olho-na-acessibilidade-v2.html",
+                category: "Governança",
+                tags: ["Acessibilidade", "W3C", "Inclusão", "Compliance"],
+                date: "2026-02-18"
+            },
+            {
+                title: "Sobre a ASC Consulting",
+                desc: "Trajetória executiva das sócias Vania Abreu e Patrícia Sakata. DNA Executivo e Visão de Dono.",
+                path: "sobre-a-asc.html",
+                category: "Institucional",
+                tags: ["Big 4", "Boutique", "História", "Senioridade"],
+                date: "2026-02-15"
+            },
+            {
+                title: "Política de Privacidade (LGPD)",
+                desc: "Termos oficiais de tratamento de dados e segurança da informação conforme a Lei 13.709/2018.",
+                path: "politica-privacidade.html",
+                category: "Governança",
+                tags: ["LGPD", "Dados", "Jurídico", "Segurança"],
+                date: "2026-02-17"
+            }
+        ];
+
+        let activeCategory = 'all';
+        let currentResults = [...siteIndex];
+
+        // Lógica de Filtro por Categoria (Business Line)
+        function filterByCategory(cat) {
+            activeCategory = cat;
+            
+            // Atualizar UI dos botões
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.cat === cat);
+            });
+
+            // Atualizar indicador
+            const indicator = document.getElementById('filter-indicator');
+            indicator.innerText = `Exibindo: ${cat === 'all' ? 'Todos os ativos' : 'Linha de ' + cat}`;
+
+            runSearch(); // Re-executa a busca combinada
+        }
+
+        // Motor de Busca Combinado
+        function runSearch() {
+            const query = document.getElementById('main-search').value.toLowerCase();
+            
+            currentResults = siteIndex.filter(item => {
+                const matchQuery = query === "" || 
+                                   item.title.toLowerCase().includes(query) || 
+                                   item.desc.toLowerCase().includes(query) ||
+                                   item.tags.some(tag => tag.toLowerCase().includes(query));
+                
+                const matchCat = activeCategory === 'all' || item.category === activeCategory;
+                
+                return matchQuery && matchCat;
+            });
+
+            renderResults();
+        }
+
+        // Renderização dos Itens
+        function renderResults() {
+            const list = document.getElementById('results-list');
+            const empty = document.getElementById('empty-state');
+            const count = document.getElementById('result-count');
+
+            list.innerHTML = "";
+            
+            if (currentResults.length === 0) {
+                empty.classList.remove('hidden');
+                count.innerText = "Nenhum resultado encontrado";
+                return;
+            }
+
+            empty.classList.add('hidden');
+            count.innerText = `${currentResults.length} ativos encontrados`;
+
+            currentResults.forEach(item => {
+                const article = document.createElement('div');
+                article.className = "result-item";
+                article.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                        <div class="space-y-3">
+                            <span class="text-[8px] font-bold uppercase tracking-widest text-[#967938] border border-[#D4B878] px-2 py-0.5">Linha de ${item.category}</span>
+                            <h3 class="serif text-2xl text-[#1A3668] leading-tight hover:text-[#967938] transition-colors">
+                                <a href="${item.path}">${item.title}</a>
+                            </h3>
+                            <p class="text-sm text-gray-500 max-w-2xl leading-relaxed">${item.desc}</p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                ${item.tags.map(t => `<span class="tag-pill">#${t}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="text-right pt-2">
+                            <a href="${item.path}" class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#1A3668] group">
+                                Ver Detalhes <i class="fas fa-chevron-right text-[#967938] group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(article);
+            });
+        }
+
+        // Simulação de Reindexação Estruturada
+        function rebuildIndex() {
+            const overlay = document.getElementById('sync-overlay');
+            const timeLabel = document.getElementById('last-sync-time');
+            
+            overlay.classList.remove('hidden');
+
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                const now = new Date();
+                timeLabel.innerText = `Atualizado agora`;
+                
+                alert(`Sincronização Concluída.\n${siteIndex.length} ativos de 5 Business Lines foram re-indexados com sucesso.`);
+            }, 2000);
+        }
+
+        // Ordenação
+        function sortResults(criteria) {
+            if (criteria === 'newest') {
+                currentResults.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (criteria === 'alphabetical') {
+                currentResults.sort((a, b) => a.title.localeCompare(b.title));
+            } else {
+                currentResults = [...currentResults]; // Simula relevância
+            }
+            renderResults();
+        }
+
+        // Download Catálogo PDF
+        function downloadIndexPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFillColor(26, 54, 104);
+            doc.rect(0, 0, 210, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold"); doc.setFontSize(22);
+            doc.text("ASC Consulting", 20, 25);
+            doc.setFontSize(10); doc.text("Portfólio Estratégico & Índice de Soluções", 20, 32);
+
+            let y = 60;
+            doc.setTextColor(17, 17, 17); doc.setFontSize(16);
+            doc.text("Catálogo de Serviços e Governança", 20, y);
+            y += 15;
+
+            siteIndex.forEach(item => {
+                if (y > 270) { doc.addPage(); y = 20; }
+                doc.setFont("times", "bold"); doc.setFontSize(12); doc.text(`${item.category}: ${item.title}`, 20, y);
+                y += 6;
+                doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(100);
+                const splitText = doc.splitTextToSize(item.desc, 170);
+                doc.text(splitText, 20, y);
+                y += (splitText.length * 4) + 8;
+            });
+
+            doc.save("ASC_Catalogo_Servicos_2026.pdf");
+        }
+
+        // Init
+        window.onload = renderResults;
+    </script>
+</body>
+</html>

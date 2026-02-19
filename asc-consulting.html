@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito | ASC Consulting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --asc-navy: #002D5B;
+            --asc-gold: #D4AF37;
+            --asc-light-gold: #fcf8eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .text-navy { color: var(--asc-navy); }
+        .bg-navy { background-color: var(--asc-navy); }
+        .bg-gold { background-color: var(--asc-gold); }
+
+        /* Estilo de Fundo do Dashboard (Inspirado no arquivo corrigido) */
+        .dashboard-bg {
+            background-color: #fcfcfc;
+            background-image: 
+                radial-gradient(circle at 2px 2px, #e5e7eb 1px, transparent 0);
+            background-size: 32px 32px;
+            position: relative;
+        }
+
+        .dashboard-bg::before {
+            content: "";
+            position: fixed;
+            top: 0; right: 0;
+            width: 40%; height: 100%;
+            background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.03) 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Animações */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            background: #e5e7eb;
+            height: 0;
+            transition: height 2.5s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        /* PDF Card Style */
+        .pdf-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #eef0f2;
+            background: #ffffff;
+        }
+        .pdf-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--asc-gold);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 40px; height: 3px;
+            background: var(--asc-gold);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 8px; height: 8px;
+            z-index: 100;
+            border-radius: 50%;
+        }
+
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- SEÇÃO 1: LOGIN -->
+    <div id="login-section" class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl border-t-4 border-[#D4AF37] fade-in relative z-10">
+            <div class="text-center mb-8">
+                <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-14 mx-auto mb-4">
+                <h1 class="text-xl font-semibold text-navy uppercase tracking-widest">Acesso Estratégico</h1>
+                <p class="text-gray-400 text-sm italic">Área exclusiva para sócias fundadoras</p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Usuário</label>
+                    <input type="text" id="username" required class="w-full px-4 py-3 rounded border border-gray-100 bg-gray-50 focus:bg-white focus:border-[#D4AF37] outline-none transition" placeholder="Nome de Usuário">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Senha</label>
+                    <input type="password" id="password" required class="w-full px-4 py-3 rounded border border-gray-100 bg-gray-50 focus:bg-white focus:border-[#D4AF37] outline-none transition" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-navy text-white py-4 rounded font-bold hover:bg-opacity-90 transition transform active:scale-95 shadow-lg tracking-widest text-xs">
+                    AUTENTICAR E ACESSAR
+                </button>
+            </form>
+            <div id="error-msg" class="hidden mt-4 text-red-500 text-xs text-center font-medium">Credenciais incorretas. Tente novamente.</div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 2: EXPERIÊNCIA NARRATIVA -->
+    <div id="experience-section" class="hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-6 text-center">
+        <div id="welcome-msg-container" class="max-w-2xl opacity-0 transition-opacity duration-1000">
+            <h2 id="personal-message" class="text-2xl md:text-3xl font-serif text-navy mb-8 italic leading-relaxed px-4"></h2>
+            <div id="victory-icon" class="text-6xl text-gold mb-6 animate-bounce">🏆</div>
+        </div>
+
+        <div id="timeline-container" class="hidden w-full max-w-4xl relative py-20 overflow-y-auto max-h-[80vh]">
+            <div id="timeline-line" class="timeline-line"></div>
+            <div class="space-y-24 relative z-10">
+                <div class="timeline-item opacity-0 transform translate-x-10 transition-all duration-700 flex justify-start pl-[55%]">
+                    <div class="bg-white p-6 rounded shadow-lg border-l-4 border-navy text-left max-w-sm">
+                        <span class="text-gold font-bold text-xs uppercase tracking-widest">A Base</span>
+                        <h4 class="font-bold text-navy mt-1">Rigor das Big Four</h4>
+                        <p class="text-sm text-gray-600 mt-2 italic">Excelência técnica forjada em auditoria e operações de mercado.</p>
+                    </div>
+                </div>
+                <div class="timeline-item opacity-0 transform -translate-x-10 transition-all duration-700 flex justify-end pr-[55%]">
+                    <div class="bg-white p-6 rounded shadow-lg border-r-4 border-navy text-right max-w-sm">
+                        <span class="text-gold font-bold text-xs uppercase tracking-widest">O Diferencial</span>
+                        <h4 class="font-bold text-navy mt-1">DNA Executivo & Senioridade</h4>
+                        <p class="text-sm text-gray-600 mt-2 italic">Liderança em Transações com visão real de dono.</p>
+                    </div>
+                </div>
+                <div id="final-step" class="opacity-0 transform scale-50 transition-all duration-1000 flex flex-col items-center pt-10">
+                    <div class="bg-navy text-white p-10 rounded-full shadow-2xl border-4 border-[#D4AF37] text-center">
+                        <h3 class="text-2xl font-bold uppercase tracking-widest">ASC Consulting</h3>
+                    </div>
+                    <h2 class="text-4xl font-serif text-navy mt-6 font-bold">Seu lugar agora é aqui!</h2>
+                    <button id="show-dashboard" class="mt-10 px-10 py-4 bg-gold text-white font-bold rounded-full hover:shadow-2xl transition transform hover:-translate-y-1 shadow-lg">
+                        ACESSAR ESCRITÓRIO VIRTUAL <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 3: DASHBOARD DE CARDS (DASHBOARD-BG) -->
+    <div id="dashboard-section" class="hidden min-h-screen w-full dashboard-bg p-6 md:p-12 overflow-y-auto relative">
+        <div class="max-w-7xl mx-auto relative z-10">
+            
+            <!-- Header do Dashboard -->
+            <header class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-10">
+                <div class="mb-4 md:mb-0">
+                    <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-10 mb-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
+                        <p class="text-gray-500 text-[10px] tracking-widest uppercase font-semibold">Sessão Segura Ativa</p>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Bem-vinda, Sócia Fundadora</p>
+                    <span id="user-display" class="block font-bold text-navy text-2xl font-serif"></span>
+                    <button onclick="location.reload()" class="mt-2 text-[10px] text-red-500 uppercase font-bold tracking-widest hover:underline">Sair do Sistema</button>
+                </div>
+            </header>
+
+            <!-- 1. PÁGINAS INSTITUCIONAIS -->
+            <section class="mb-16">
+                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Páginas Institucionais</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-2">Página Principal (Home)</h3>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/index.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-center text-[10px] font-bold text-navy border border-gray-100 hover:bg-navy hover:text-white transition">VISUALIZAR</a>
+                    </div>
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-2">Sobre a ASC</h3>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-center text-[10px] font-bold text-navy border border-gray-100 hover:bg-navy hover:text-white transition">VISUALIZAR</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. PÁGINAS DE CORE BUSINESS -->
+            <section class="mb-16">
+                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Páginas de Core Business</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="pdf-card rounded p-4 flex flex-col group border-l-4 border-l-navy">
+                        <div class="aspect-video bg-gray-100 mb-3 flex items-center justify-center">
+                            <i class="fas fa-briefcase text-3xl text-gray-300"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-2">Nossos Serviços</h3>
+                        <a href="#" class="mt-auto py-2 bg-gray-200 text-center text-[10px] font-bold text-gray-400 cursor-not-allowed">EM DESENVOLVIMENTO</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PROPOSTA DE FERRAMENTAS PARA CLIENTES -->
+            <section class="mb-16">
+                <div class="flex items-center space-x-4 mb-6">
+                    <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest mb-0">Ferramentas para Clientes</h2>
+                    <span class="bg-gold text-white text-[9px] px-2 py-1 rounded font-bold uppercase tracking-tighter">Proposta</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Dashboard de Mercado -->
+                    <div class="pdf-card rounded p-4 bg-white">
+                        <div class="text-gold mb-3 text-xl"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="font-bold text-navy text-xs mb-1">Dashboard de Mercado</h3>
+                        <p class="text-[10px] text-gray-400 mb-4 italic">Análise de dados em tempo real.</p>
+                        <a href="dashboard-de-mercado.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    </div>
+                    <!-- Arrendamento -->
+                    <div class="pdf-card rounded p-4 bg-white">
+                        <div class="text-gold mb-3 text-xl"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3 class="font-bold text-navy text-xs mb-1">Arrendamento</h3>
+                        <p class="text-[10px] text-gray-400 mb-4 italic">Gestão de ativos e contratos.</p>
+                        <a href="arrendamento.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    </div>
+                    <!-- Cursos -->
+                    <div class="pdf-card rounded p-4 bg-white">
+                        <div class="text-gold mb-3 text-xl"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="font-bold text-navy text-xs mb-1">Cursos & Educação</h3>
+                        <p class="text-[10px] text-gray-400 mb-4 italic">Portal de capacitação executiva.</p>
+                        <a href="cursos.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    </div>
+                    <!-- Portal do Cliente -->
+                    <div class="pdf-card rounded p-4 bg-white border-dashed border-2">
+                        <div class="text-gold mb-3 text-xl"><i class="fas fa-user-tie"></i></div>
+                        <h3 class="font-bold text-navy text-xs mb-1">Portal do Cliente</h3>
+                        <p class="text-[10px] text-gray-400 mb-4 italic">Espaço exclusivo de governança.</p>
+                        <a href="portal-do-cliente.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PORTAL ADMINISTRATIVO / ESCRITÓRIO VIRTUAL -->
+            <section class="mb-20">
+                <div class="bg-navy p-10 rounded-xl shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-[0.02] transform rotate-45 -translate-y-20 translate-x-20"></div>
+                    
+                    <h2 class="text-white font-bold text-xl uppercase tracking-widest mb-2">Portal Administrativo</h2>
+                    <p class="text-gray-400 text-xs mb-8">Meu Escritório Virtual - Gestão Interna ASC</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                        <!-- Dashboard -->
+                        <a href="dashboar.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-th-large text-gold text-lg mb-2 group-hover:scale-110 transition"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Dashboard</span>
+                        </a>
+                        <!-- Publicação -->
+                        <a href="publicacao.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-edit text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Publicação</span>
+                        </a>
+                        <!-- Templates -->
+                        <a href="Templates.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-file-code text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Templates</span>
+                        </a>
+                        <!-- Marketing -->
+                        <a href="markting.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-bullhorn text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Marketing</span>
+                        </a>
+                        <!-- ASC-Comunica -->
+                        <a href="ASC-Comunica.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-comments text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">ASC Comunica</span>
+                        </a>
+                        <!-- Politicas -->
+                        <a href="Politicas-internas.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-shield-alt text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Políticas</span>
+                        </a>
+                        <!-- Midias -->
+                        <a href="ASC-nas-midias.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
+                            <i class="fas fa-newspaper text-gold text-lg mb-2"></i>
+                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Nas Mídias</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="text-center text-gray-400 text-[10px] py-12 border-t border-gray-200 uppercase tracking-widest">
+                &copy; 2024 ASC Consulting | Planejamento Estratégico por Leivis Lima
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const users = {
+            "Vania Poderosa": "Eu-Sou-Girl-Power",
+            "Patricia Poderosa": "Eu-Sou-Girl-Power"
+        };
+
+        const loginForm = document.getElementById('login-form');
+        const loginSection = document.getElementById('login-section');
+        const expSection = document.getElementById('experience-section');
+        const dashSection = document.getElementById('dashboard-section');
+        const welcomeMsg = document.getElementById('welcome-msg-container');
+        const timelineCont = document.getElementById('timeline-container');
+        const finalStep = document.getElementById('final-step');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userVal = document.getElementById('username').value;
+            const passVal = document.getElementById('password').value;
+
+            if (users[userVal] && users[userVal] === passVal) {
+                startExperience(userVal);
+            } else {
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        });
+
+        function playVictorySound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const playNote = (freq, start, duration) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, start);
+                    gain.gain.setValueAtTime(0.08, start);
+                    gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+                    osc.connect(gain); gain.connect(audioCtx.destination);
+                    osc.start(start); osc.stop(start + duration);
+                };
+                const now = audioCtx.currentTime;
+                [261, 329, 392, 523].forEach((f, i) => playNote(f, now + (i*0.1), 0.5));
+            } catch(e) {}
+        }
+
+        function createConfetti() {
+            for(let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.backgroundColor = i % 2 === 0 ? '#D4AF37' : '#002D5B';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        function startExperience(user) {
+            loginSection.classList.add('hidden');
+            expSection.classList.remove('hidden');
+            document.getElementById('user-display').innerText = user;
+
+            const msgElement = document.getElementById('personal-message');
+            if (user.includes("Vania")) {
+                msgElement.innerText = "Parabéns pela sua Trajetória até aqui! Admiro mulheres fortes como você!";
+            } else {
+                msgElement.innerText = "Apesar de não nos conhecermos, admiro mulheres que crescem e vencem em ambientes patriarcais que não desistem!";
+            }
+
+            setTimeout(() => {
+                playVictorySound();
+                welcomeMsg.classList.replace('opacity-0', 'opacity-100');
+                createConfetti();
+            }, 500);
+
+            setTimeout(() => {
+                welcomeMsg.classList.add('hidden');
+                timelineCont.classList.remove('hidden');
+                animateTimeline();
+            }, 5000);
+        }
+
+        function animateTimeline() {
+            const line = document.getElementById('timeline-line');
+            const items = document.querySelectorAll('.timeline-item');
+            setTimeout(() => line.style.height = '100%', 200);
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.replace('opacity-0', 'opacity-100');
+                    item.classList.remove('translate-x-10', '-translate-x-10');
+                }, 1000 * (index + 1));
+            });
+            setTimeout(() => {
+                finalStep.classList.replace('opacity-0', 'opacity-100');
+                finalStep.classList.remove('scale-50');
+                createConfetti();
+                playVictorySound();
+            }, 1000 * (items.length + 1.8));
+        }
+
+        document.getElementById('show-dashboard').addEventListener('click', () => {
+            expSection.classList.add('hidden');
+            dashSection.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

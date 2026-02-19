@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASC Consulting | Estratégia, Governança e Transformação</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --c-navy: #1A3668;
+            --c-navy-dark: #0A1F40;
+            --c-gold: #967938;
+            --c-gold-pale: #D4B878;
+            --c-white: #FFFFFF;
+            --c-off-white: #F8F7F4;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body { 
+            font-family: var(--font-sans); 
+            color: #1a1a1a; 
+            background: var(--c-white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: var(--font-serif); }
+        
+        .site-header { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255,255,255,0.98); 
+            border-bottom: 1px solid #eee; 
+            height: 90px; 
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            backdrop-filter: blur(10px); 
+        }
+
+        /* Grid Backgrounds */
+        .bg-grid {
+            background-image: radial-gradient(var(--c-gold-pale) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            opacity: 0.12;
+        }
+
+        /* Animations */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Cards */
+        .insight-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .insight-card:hover {
+            border-color: var(--c-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 54, 104, 0.08);
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            height: 100%;
+        }
+        .service-card:hover {
+            border-color: var(--c-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 54, 104, 0.08);
+        }
+
+        .opportunity-card {
+            background: white;
+            border-left: 4px solid var(--c-gold);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .opportunity-card:hover {
+            background: var(--c-off-white);
+            transform: translateX(5px);
+        }
+
+        .btn-gold {
+            background: var(--c-gold);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .btn-gold:hover { 
+            background: var(--c-navy-dark); 
+            transform: scale(1.02);
+        }
+
+        .tag-category {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-gold);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .partner-photo {
+            width: 100%; 
+            aspect-ratio: 4/5; 
+            object-fit: cover;
+            filter: grayscale(100%); 
+            transition: all 0.5s;
+            border-bottom: 4px solid var(--c-gold);
+        }
+        .partner-box:hover .partner-photo { 
+            filter: grayscale(0%); 
+            transform: translateY(-5px); 
+        }
+
+        .hero-image-container {
+            background: linear-gradient(145deg, var(--c-navy-dark), var(--c-navy));
+            border-radius: 30px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg, rgba(212, 184, 120, 0.05) 0, rgba(212, 184, 120, 0.05) 1px, transparent 1px, transparent 15px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER (exatamente igual aos arquivos fornecidos) -->
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></a>
+            <nav class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest text-[#1A3668]">
+                <a href="sobre-a-asc.html" class="hover:text-[#967938] transition-colors">A Boutique</a>
+                <a href="linhas-de-negocios.html" class="hover:text-[#967938] transition-colors">Especialidades</a>
+                <a href="insights-estrategicos.html" class="hover:text-[#967938] transition-colors">Insights</a>
+                <a href="segmentos-de-negocios.html" class="hover:text-[#967938] transition-colors">Segmentos</a>
+            </nav>
+            <a href="solicitacao-servicos.html" class="bg-[#1A3668] text-white px-6 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Agendar Diagnóstico</a>
+        </div>
+    </header>
+
+    <!-- HERO PODEROSO (seguindo padrão ASC) -->
+    <section class="relative bg-[#0A1F40] pt-32 pb-44 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="text-[#D4B878] text-xs font-bold uppercase tracking-[0.3em] mb-6 block">Estratégia & Governança</span>
+                    <h1 class="serif text-5xl md:text-7xl mb-8 leading-tight">
+                        Transformação Sustentável<br>
+                        <span class="italic text-[#D4B878]">para Líderes Exigentes</span>
+                    </h1>
+                    <p class="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed border-l-2 border-[#967938] pl-8 mb-10">
+                        Unimos o rigor técnico das Big Four à agilidade de uma boutique para converter desafios complexos em valor perene — sejam eles contábeis, tributários ou de governança.
+                    </p>
+                    <div class="flex gap-6">
+                        <a href="solicitacao-servicos.html" class="btn-gold">Diagnóstico Gratuito <i class="fas fa-arrow-right"></i></a>
+                        <a href="sobre-a-asc.html" class="border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#0A1F40] transition-all">Conhecer a ASC</a>
+                    </div>
+                </div>
+                <div class="reveal hero-image-container">
+                    <!-- Imagem conceitual (mantendo padrão abstrato) -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTES/MARQUEE (confiança) -->
+    <div class="py-12 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex overflow-x-auto gap-12 text-gray-400 text-sm font-bold uppercase tracking-widest">
+                <span>GLOBAL ENERGY</span>
+                <span>FINANCIAL TIMES</span>
+                <span>PHARMA CORP</span>
+                <span>RETAIL GROUP</span>
+                <span>AEROSPACE DEFENSE</span>
+                <span>AGRO INDUSTRIAL</span>
+                <span>TECH FUND</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE INSIGHTS (PUBLICAÇÕES) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="tag-category">Inteligência de Mercado</span>
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">Insights Estratégicos 2025-2026</h2>
+                <p class="text-lg text-gray-500 max-w-3xl mx-auto">Análises aprofundadas sobre os temas que definem a agenda dos conselhos e da alta direção.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Insight 1 -->
+                <div class="insight-card reveal">
+                    <span class="tag-category">Reforma Tributária</span>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">O Pilar Dois da OCDE e o impacto no Brasil</h3>
+                    <p class="text-sm text-gray-500 mb-6 flex-grow">A transição para a taxa mínima de 15% e os riscos de tributação complementar (Top-up Taxes) exigem reestruturação urgente.</p>
+                    <a href="insights-estrategicos.html#pilar-dois" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                        Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Insight 2 -->
+                <div class="insight-card reveal" style="transition-delay: 0.1s;">
+                    <span class="tag-category">IFRS 18</span>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">A nova face das demonstrações financeiras</h3>
+                    <p class="text-sm text-gray-500 mb-6 flex-grow">A nova norma de apresentação e divulgação muda radicalmente o reporte corporativo. Adequação não é opcional.</p>
+                    <a href="insights-estrategicos.html#ifrs18" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                        Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Insight 3 -->
+                <div class="insight-card reveal" style="transition-delay: 0.2s;">
+                    <span class="tag-category">Valuation de Intangíveis</span>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">IA e algoritmos: o ativo fora do balanço</h3>
+                    <p class="text-sm text-gray-500 mb-6 flex-grow">Modelos de IA geram receita mas permanecem subavaliados. Como capturar esse valor em negociações estratégicas.</p>
+                    <a href="insights-estrategicos.html#intangiveis" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                        Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-12 reveal">
+                <a href="insights-estrategicos.html" class="btn-gold">Ver todos os insights <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS (LINKS PARA LINHAS DE NEGÓCIO) -->
+    <section class="py-24 bg-[#F8F7F4] relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="tag-category">Expertise</span>
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">Nossas Especialidades</h2>
+                <p class="text-lg text-gray-500 max-w-3xl mx-auto">Soluções integradas que combinam contabilidade avançada, estratégia tributária e governança de excelência.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Serviço 1 -->
+                <div class="service-card reveal">
+                    <i class="fas fa-calculator text-4xl text-[#967938] mb-6"></i>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">Consultoria Contábil</h3>
+                    <p class="text-sm text-gray-500 mb-6">IFRS, CPC, impairment, consolidação e arrendamentos (IFRS 16).</p>
+                    <a href="linhas-de-negocios.html#contabil" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Serviço 2 -->
+                <div class="service-card reveal" style="transition-delay: 0.1s;">
+                    <i class="fas fa-file-invoice-dollar text-4xl text-[#967938] mb-6"></i>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">Tributário</h3>
+                    <p class="text-sm text-gray-500 mb-6">Planejamento tributário, reforma tributária, PILAR 2 e contencioso estratégico.</p>
+                    <a href="linhas-de-negocios.html#tributario" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Serviço 3 -->
+                <div class="service-card reveal" style="transition-delay: 0.2s;">
+                    <i class="fas fa-handshake text-4xl text-[#967938] mb-6"></i>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">M&A e Transações</h3>
+                    <p class="text-sm text-gray-500 mb-6">FDD, QofE, valuation, data room e suporte em negociações cross-border.</p>
+                    <a href="linhas-de-negocios.html#ma" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Serviço 4 -->
+                <div class="service-card reveal" style="transition-delay: 0.3s;">
+                    <i class="fas fa-users-cog text-4xl text-[#967938] mb-6"></i>
+                    <h3 class="serif text-2xl text-[#1A3668] mb-4">Governança</h3>
+                    <p class="text-sm text-gray-500 mb-6">Conselhos consultivos, sucessão, mentoria executiva e diversidade.</p>
+                    <a href="linhas-de-negocios.html#governanca" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DORES DOS CLIENTES / OPORTUNIDADES (LINKADAS COM SEGMENTOS) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="tag-category">Desafios e Oportunidades</span>
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">O que sua empresa enfrenta em 2026</h2>
+                <p class="text-lg text-gray-500 max-w-3xl mx-auto">Identificamos as principais dores por segmento e estruturamos soluções sob medida.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Agro -->
+                <div class="opportunity-card reveal">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="tag-category text-[#967938]">Agronegócio</span>
+                        <i class="fas fa-tractor text-[#967938]"></i>
+                    </div>
+                    <h3 class="serif text-xl text-[#1A3668] mb-3">Rastreabilidade e compliance internacional</h3>
+                    <p class="text-sm text-gray-500 mb-4">A partir de 2026, a UE exigirá rastreabilidade total. Produtores sem conformidade contábil perderão acesso ao mercado externo.</p>
+                    <a href="segmentos-de-negocios.html#agro" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Tecnologia -->
+                <div class="opportunity-card reveal" style="transition-delay: 0.1s;">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="tag-category text-[#967938]">Tecnologia & SaaS</span>
+                        <i class="fas fa-microchip text-[#967938]"></i>
+                    </div>
+                    <h3 class="serif text-xl text-[#1A3668] mb-3">Subavaliação em M&A</h3>
+                    <p class="text-sm text-gray-500 mb-4">Ativos de IA e algoritmos ficam "fora do balanço" (IAS 38), levando a descontos agressivos. Valuation especializado captura o valor real.</p>
+                    <a href="segmentos-de-negocios.html#tech" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Infra & IPO -->
+                <div class="opportunity-card reveal" style="transition-delay: 0.2s;">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="tag-category text-[#967938]">Infraestrutura</span>
+                        <i class="fas fa-chart-pie text-[#967938]"></i>
+                    </div>
+                    <h3 class="serif text-xl text-[#1A3668] mb-3">Super-ciclo de IPOs</h3>
+                    <p class="text-sm text-gray-500 mb-4">Pipeline de R$ 1,2 tri em ofertas. A falta de governança e sucessão afasta fundos institucionais. Preparação com 12-24 meses de antecedência é crítica.</p>
+                    <a href="segmentos-de-negocios.html#infra" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+                <!-- Indústria -->
+                <div class="opportunity-card reveal" style="transition-delay: 0.3s;">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="tag-category text-[#967938]">Indústria</span>
+                        <i class="fas fa-industry text-[#967938]"></i>
+                    </div>
+                    <h3 class="serif text-xl text-[#1A3668] mb-3">Margens comprimidas</h3>
+                    <p class="text-sm text-gray-500 mb-4">Juros de 15% e custos operacionais crescentes exigem automação de processos financeiros e redução de desperdícios para recuperar margem líquida.</p>
+                    <a href="segmentos-de-negocios.html#industria" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                        Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL COM SÓCIAS -->
+    <section class="bg-[#0A1F40] py-32 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 space-y-10 text-center lg:text-left">
+                    <div class="reveal">
+                        <h2 class="serif text-6xl mb-6">Vamos Conversar?</h2>
+                        <p class="text-xl opacity-70 mb-10">Prontos para elevar o patamar da sua governança e estratégia.</p>
+                    </div>
+                    <div class="space-y-4 reveal">
+                        <p class="text-xs font-bold tracking-widest uppercase opacity-80">contato@abreusakataconsulting.com.br</p>
+                        <p class="text-xs font-bold tracking-widest uppercase opacity-80">linkedin.com/company/asc-consultoria</p>
+                    </div>
+                    <div class="pt-10 reveal">
+                        <a href="solicitacao-servicos.html" class="btn-gold scale-110">Agendar Diagnóstico Estratégico <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 grid grid-cols-2 gap-6 reveal">
+                    <!-- Vânia -->
+                    <div class="partner-box text-center lg:text-left">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Vânia Abreu" class="partner-photo">
+                        <p class="serif text-xl mt-4">Vânia Abreu</p>
+                        <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Sócia-Fundadora | ex-Big 4</p>
+                    </div>
+                    <!-- Patrícia -->
+                    <div class="partner-box text-center lg:text-left">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80" alt="Patrícia Sakata" class="partner-photo">
+                        <p class="serif text-xl mt-4">Patrícia Sakata</p>
+                        <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Sócia-Fundadora | ex-Big 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (idêntico aos arquivos) -->
+    <footer class="py-12 bg-white text-center border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
+        </div>
+    </footer>
+
+    <!-- REVEAL ENGINE (cópia exata) -->
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
