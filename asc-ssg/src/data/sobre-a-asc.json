@@ -1,0 +1,396 @@
+{
+  "meta": {
+    "lang": "pt-BR",
+    "dir": "ltr",
+    "charset": "utf-8",
+    "viewport": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+    "title": "ASC Consulting, Consultoria de Alto Impacto | Abreu & Sakata Consulting",
+    "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável. Fundada por Vânia Abreu e Patrícia Sakata, ex-Big 4.",
+    "canonical": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html",
+    "referrer": "strict-origin-when-cross-origin"
+  },
+  "hreflang": [
+    { "lang": "pt-BR", "href": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" },
+    { "lang": "en-US", "href": "https://auditeduca.github.io/asc-consulting.com.br/us/about-asc.html" },
+    { "lang": "es-MX", "href": "https://auditeduca.github.io/asc-consulting.com.br/mx/sobre-asc.html" },
+    { "lang": "x-default", "href": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" }
+  ],
+  "og": {
+    "type": "website",
+    "locale": "pt_BR",
+    "site_name": "ASC – Abreu & Sakata Consulting",
+    "url": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html",
+    "title": "ASC: Consultoria Estratégica com DNA Executivo",
+    "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável.",
+    "image": "https://auditeduca.github.io/asc-consulting.com.br/assets/og/asc-banner-pt-br.webp",
+    "image_width": "1200",
+    "image_height": "630",
+    "image_alt": "Sócias da ASC em escritório moderno. Texto: Estratégia, Rigor Técnico e Visão de Impacto."
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "site": "@ASCConsultora",
+    "title": "ASC: Consultoria Estratégica com DNA Executivo",
+    "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável.",
+    "image": "https://auditeduca.github.io/asc-consulting.com.br/assets/og/asc-banner-pt-br.webp"
+  },
+  "assets": {
+    "favicon_ico": "https://auditeduca.github.io/asc-consulting.com.br/favicon.ico",
+    "apple_touch_icon": "https://auditeduca.github.io/asc-consulting.com.br/apple-touch-icon.png",
+    "logo_avif": "https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif",
+    "logo_png": "https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.png",
+    "logo_footer_avif": "https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif",
+    "logo_footer_png": "https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.png"
+  },
+  "jsonLd": [
+    {
+      "@context": "https://schema.org",
+      "@type": "ConsultingService",
+      "name": "ASC – Abreu & Sakata Consulting",
+      "alternateName": "ASC Consultoria",
+      "url": "https://auditeduca.github.io/asc-consulting.com.br",
+      "logo": "https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif",
+      "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável.",
+      "founders": [
+        { "@type": "Person", "name": "Vânia Abreu", "jobTitle": "Sócia", "sameAs": "https://www.linkedin.com/in/vania-abreu-3b90371/" },
+        { "@type": "Person", "name": "Patricia Sakata", "jobTitle": "Sócia", "sameAs": "https://www.linkedin.com/in/patricia-f-sakata-de-oliveira-656a6824/" }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Paulista, 2300",
+        "postalCode": "01310-300",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "areaServed": ["BR", "US", "MX"],
+      "sameAs": "https://www.linkedin.com/company/asc-consultoria-cont%C3%A1bil-e-financeira/"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://auditeduca.github.io/asc-consulting.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Sobre a ASC", "item": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual é o diferencial da ASC?",
+          "acceptedAnswer": { "@type": "Answer", "text": "DNA Executivo: projetos liderados diretamente pelas sócias com senioridade Big 4, foco em geração de valor real e atendimento sênior sem repasse para equipes júnior." }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais são as linhas de serviço da ASC?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Consultoria Contábil, Financeira e Tributária; Transações Corporativas e Estruturação (M&A); Governança e Conselhos; Mentoria e Coaching; Digital & Process Automation." }
+        },
+        {
+          "@type": "Question",
+          "name": "A ASC atende empresas em processos de M&A?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sim. Assessoria estratégica em M&A, reestruturações societárias, due diligences completas, valuation, PPA e preparação de data room." }
+        }
+      ]
+    }
+  ],
+  "site": {
+    "baseUrl": "https://auditeduca.github.io/asc-consulting.com.br",
+    "skipLinkLabel": "Ir para o conteúdo principal",
+    "skipLinkTarget": "#main-content"
+  },
+  "nav": {
+    "logoAlt": "ASC Abreu & Sakata Consulting",
+    "logoHref": "https://auditeduca.github.io/asc-consulting.com.br/",
+    "currentPage": "sobre-a-asc",
+    "items": [
+      { "id": "inicio",           "label": "Início",          "href": "https://auditeduca.github.io/asc-consulting.com.br/" },
+      { "id": "sobre-a-asc",      "label": "Sobre a ASC",     "href": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" },
+      { "id": "linhas-de-servico","label": "Linhas de Serviço","href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servico.html" },
+      { "id": "casos",            "label": "Casos",           "href": "https://auditeduca.github.io/asc-consulting.com.br/casos" },
+      { "id": "publicacoes",      "label": "Publicações",     "href": "https://auditeduca.github.io/asc-consulting.com.br/publicacoes" }
+    ],
+    "cta": {
+      "label": "Contato",
+      "href": "https://auditeduca.github.io/asc-consulting.com.br/contato.html",
+      "ariaLabel": "Falar com a ASC"
+    },
+    "languages": [
+      { "code": "PT-BR", "label": "Português", "href": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html",  "flag": "🇧🇷", "current": true },
+      { "code": "EN-US", "label": "English",   "href": "https://auditeduca.github.io/asc-consulting.com.br/us/about-asc.html", "flag": "🇺🇸", "current": false },
+      { "code": "ES-MX", "label": "Español",   "href": "https://auditeduca.github.io/asc-consulting.com.br/mx/sobre-asc.html", "flag": "🇲🇽", "current": false }
+    ]
+  },
+  "breadcrumb": [
+    { "label": "Início",     "href": "https://auditeduca.github.io/asc-consulting.com.br/", "current": false },
+    { "label": "Sobre a ASC","href": null, "current": true }
+  ],
+  "hero": {
+    "headingId": "hero-heading",
+    "titleLine1": "ASC Consulting,",
+    "titleLine2": "consultoria de",
+    "titleEmphasis": "alto impacto",
+    "titleLine3": "e valor sustentável.",
+    "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável. Fundada por Vânia Abreu e Patricia Sakata — executivas com mais de 26 anos em Big Four.",
+    "stat": {
+      "value": "+26",
+      "label": "anos de\nexperiência Big Four"
+    }
+  },
+  "pillars": {
+    "headingId": "pillars-heading",
+    "headingText": "Nossos pilares estratégicos",
+    "items": [
+      {
+        "number": "01.",
+        "numberLabel": "Pilar 01",
+        "title": "DNA Executivo",
+        "text": "Quem nos contrata é atendido diretamente pelas sócias. Atuação consultiva de quem já liderou operações complexas em auditoria, M&A e mercado de capitais.",
+        "delay": null
+      },
+      {
+        "number": "02.",
+        "numberLabel": "Pilar 02",
+        "title": "Atendimento Sênior",
+        "text": "Todos os projetos são conduzidos diretamente por profissionais com elevada senioridade — sem repasse para equipes júnior.",
+        "delay": "0.1s"
+      },
+      {
+        "number": "03.",
+        "numberLabel": "Pilar 03",
+        "title": "Visão de Dono",
+        "text": "Tratamos o negócio do cliente como se fosse nosso. Foco em geração de valor tangível, mitigação de riscos reais e sustentabilidade de longo prazo.",
+        "delay": "0.2s"
+      },
+      {
+        "number": "04.",
+        "numberLabel": "Pilar 04",
+        "title": "Governança Humana & ESG",
+        "text": "Compromisso com a sustentabilidade corporativa, equidade de gênero e bem-estar organizacional como pilares de perenidade dos negócios.",
+        "delay": "0.3s"
+      }
+    ]
+  },
+  "services": {
+    "headingId": "services-heading",
+    "sectionLabel": "O que fazemos",
+    "sectionTitle": "Nossas",
+    "sectionTitleStrong": "linhas de serviço",
+    "items": [
+      {
+        "num": "01",
+        "title": "Consultoria Contábil, Financeira e Tributária",
+        "tagline": "Precisão técnica para a integridade do seu capital.",
+        "text": "Diagnóstico de processos e matriz de risco, demonstrações financeiras (CPC/IFRS), consultas técnicas, laudos especializados e assessoria tributária, trabalhista e previdenciária.",
+        "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/consultoria-contabil.html",
+        "ariaLabel": "01 Consultoria Contábil, Financeira e Tributária - Consultoria Contábil, Financeira e Tributária",
+        "iconKey": "document",
+        "delay": null
+      },
+      {
+        "num": "02",
+        "title": "Transações Corporativas e Estruturação",
+        "tagline": "Inteligência e segurança em momentos decisivos.",
+        "text": "Assessoria estratégica em M&A, reestruturações societárias, due diligences completas (financeira, tributária, trabalhista e previdenciária), valuation, PPA e data room.",
+        "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/transacoes-M&A.html",
+        "ariaLabel": "02 Transações Corporativas e Estruturação - Transações Corporativas e Estruturação",
+        "iconKey": "arrows",
+        "delay": "0.08s"
+      },
+      {
+        "num": "03",
+        "title": "Governança e Conselhos",
+        "tagline": "Liderança que projeta a perenidade do negócio.",
+        "text": "Estruturação e atuação em Conselhos Consultivos. Apoio a programas de sucessão com foco em equidade de gênero e pluralidade. Mentoria executiva e definição de metas estratégicas.",
+        "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/governanca-corporativa.html",
+        "ariaLabel": "03 Governança e Conselhos - Governança e Conselhos",
+        "iconKey": "home",
+        "delay": "0.16s"
+      },
+      {
+        "num": "04",
+        "title": "Mentoria e Coaching",
+        "tagline": "Liderança que transforma e potencializa o protagonismo feminino.",
+        "text": "Programa Empoderar para Crescer: fortalecimento da autoconfiança executiva para posições C-Level e Conselhos. Personal branding corporativo e desenvolvimento de competências estratégicas.",
+        "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/desensolvimento-de-carreira.html",
+        "ariaLabel": "04 Mentoria e Coaching - Mentoria e Coaching",
+        "iconKey": "users",
+        "delay": "0.24s"
+      },
+      {
+        "num": "05",
+        "title": "Digital & Process Automation",
+        "tagline": "Eficiência operacional através de tecnologia e alianças estratégicas.",
+        "text": "Automação de processos contábeis, financeiros e operacionais. Integração de soluções tecnológicas para eliminar falhas, reduzir tempo operacional e gerar inteligência estratégica.",
+        "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/automacao-digital.html",
+        "ariaLabel": "05 Digital & Process Automation - Digital e Process Automation",
+        "iconKey": "monitor",
+        "delay": "0.32s"
+      }
+    ]
+  },
+  "timeline": {
+    "headingId": "timeline-heading",
+    "sectionLabel": "Nossa trajetória",
+    "sectionTitle": "Uma firma",
+    "sectionTitleStrong": "desde o início",
+    "ariaLabel": "Marcos da ASC",
+    "items": [
+      {
+        "year": "2025",
+        "heading": "Fundação — 2025",
+        "text": "Vânia Abreu e Patricia Sakata uniram cerca de 26 anos de trajetória em Big Four para criar uma consultoria-conceito focada em resultados concretos, ética e rigor técnico. A ASC nasce com DNA executivo e propósito claro: transformar complexidade em valor."
+      },
+      {
+        "year": "2025",
+        "heading": "Programa Empoderar — 2025",
+        "text": "Lançamento do programa Empoderar para Crescer — metodologia exclusiva de aceleração de liderança feminina para posições C-Level e Conselhos, atualmente em fase de patente."
+      },
+      {
+        "year": "2026",
+        "heading": "Expansão & Digital — 2026",
+        "text": "Estruturação da prática Digital & Process Automation e ampliação da rede de parceiros estratégicos, com foco em automação de backoffice e inteligência para decisões de negócio."
+      }
+    ]
+  },
+  "leadership": {
+    "headingId": "leadership-heading",
+    "sectionLabel": "Quem somos",
+    "sectionTitle": "As",
+    "sectionTitleStrong": "sócias",
+    "members": [
+      {
+        "id": "abreu",
+        "nameId": "leader-abreu-name",
+        "bioId": "leader-abreu-bio",
+        "name": "Vânia Abreu",
+        "role": "Sócia",
+        "bio": "Executiva com mais de 26 anos de experiência em Big Four, sendo 12 anos como Diretora Executiva na EY. Especialista em auditoria, normas IFRS/CPC, M&A e consultoria contábil. Em formação em Coaching & Mentoring pela FGV. Idealizadora do programa Empoderar para Crescer e Conselheira Pro Bono.",
+        "photo": {
+          "webp": "https://auditeduca.github.io/asc-consulting.com.br/assets/team/vania-abreu-socia-asc-consulting.webp",
+          "jpg": "https://auditeduca.github.io/asc-consulting.com.br/assets/team/vania-abreu-socia-asc-consulting.jpg",
+          "alt": "Foto de Vânia Abreu, sócia da ASC Consulting, em ambiente de escritório moderno.",
+          "width": 600,
+          "height": 800
+        },
+        "social": [
+          {
+            "platform": "LinkedIn",
+            "href": "https://www.linkedin.com/in/vania-abreu-3b90371/",
+            "ariaLabel": "Perfil de Vânia Abreu no LinkedIn (abre em nova aba)"
+          }
+        ],
+        "delay": null
+      },
+      {
+        "id": "sakata",
+        "nameId": "leader-sakata-name",
+        "bioId": "leader-sakata-bio",
+        "name": "Patricia Sakata",
+        "role": "Sócia",
+        "bio": "Executiva com mais de 19 anos em auditoria, mercado de capitais e consultoria em Big Four. Ex-Diretora de FAAS Tech na EY Brasil, especialista em transformação digital financeira, IFRS, BR GAAP, normas CVM e IPOs. Conselheira Consultiva certificada pela Board Academy.",
+        "photo": {
+          "webp": "https://auditeduca.github.io/asc-consulting.com.br/assets/team/patricia-sakata-socia-asc-consulting.webp",
+          "jpg": "https://auditeduca.github.io/asc-consulting.com.br/assets/team/patricia-sakata-socia-asc-consulting.jpg",
+          "alt": "Foto de Patricia Sakata, sócia da ASC Consulting, em ambiente de escritório moderno.",
+          "width": 600,
+          "height": 800
+        },
+        "social": [
+          {
+            "platform": "LinkedIn",
+            "href": "https://www.linkedin.com/in/patricia-f-sakata-de-oliveira-656a6824/",
+            "ariaLabel": "Perfil de Patricia Sakata no LinkedIn (abre em nova aba)"
+          }
+        ],
+        "delay": "0.2s"
+      }
+    ]
+  },
+  "cta": {
+    "headingId": "cta-heading",
+    "sectionLabel": "Próximo passo",
+    "title": "Prontos para elevar o patamar da sua",
+    "titleStrong": "governança e estratégia?",
+    "button": {
+      "label": "Falar com a equipe",
+      "href": "https://auditeduca.github.io/asc-consulting.com.br/contato.html",
+      "ariaLabel": "Falar com a equipe da ASC"
+    }
+  },
+  "footer": {
+    "description": "Consultoria de negócios que transforma decisões em crescimento, governança e valor sustentável.",
+    "carbonLink": {
+      "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/pegada-de-carbono.html",
+      "ariaLabel": "Pegada de Carbono Digital da ASC",
+      "label": "🌱 Pegada de Carbono Digital"
+    },
+    "nav": {
+      "sobre": {
+        "heading": "Sobre a ASC",
+        "items": [
+          { "label": "Sobre a ASC",          "href": "https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html", "current": true },
+          { "label": "Nossa Trajetória",      "href": "https://auditeduca.github.io/asc-consulting.com.br/historia" },
+          { "label": "Sustentabilidade Digital","href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/nosso-compromisso-sustentavel-digital.html" },
+          { "label": "Acessibilidade Digital", "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/acessibilidade-digital.html" }
+        ]
+      },
+      "servicos": {
+        "heading": "Linhas de Serviço",
+        "items": [
+          { "label": "Consultoria Contábil",    "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/consultoria-contabil.html" },
+          { "label": "Transações Corporativas", "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/transacoes-M&A.html" },
+          { "label": "Governança e Conselhos",  "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/governanca-corporativa.html" },
+          { "label": "Mentoria e Coaching",     "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/desensolvimento-de-carreira.html" },
+          { "label": "Digital & Automation",    "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/automacao-digital.html" }
+        ]
+      }
+    },
+    "contact": {
+      "heading": "Contato",
+      "address": "Av. Paulista, 2300\n01310-300 São Paulo — SP",
+      "email": "contato@asc-consulting.com.br",
+      "emailHref": "mailto:contato@asc-consulting.com.br"
+    },
+    "bottom": {
+      "copy": "2026 ASC — Abreu & Sakata Consulting Ltda. Todos os direitos reservados.",
+      "legal": [
+        { "label": "Privacidade",        "href": "https://auditeduca.github.io/asc-consulting.com.br/politica-privacidade.html" },
+        { "label": "Termos de Uso",      "href": "https://auditeduca.github.io/asc-consulting.com.br/politica-termos-de-uso.html" },
+        { "label": "Cookies",            "href": "https://auditeduca.github.io/asc-consulting.com.br/politica-de-cookies.html" },
+        { "label": "Notificações Legais","href": "https://auditeduca.github.io/asc-consulting.com.br/politica-de-notificacoes-legais.html" },
+        { "label": "Mapa do Site",       "href": "https://auditeduca.github.io/asc-consulting.com.br/linhas-de-servicos/mapa-do-site.html" }
+      ]
+    }
+  },
+  "cookies": {
+    "storageKey": "asc_cookie_v2",
+    "banner": {
+      "text": "Utilizamos cookies para melhorar sua experiência, analisar tráfego e personalizar conteúdo. Ao clicar em <em>\"Aceitar todos\"</em>, você concorda com nossa <a href=\"https://auditeduca.github.io/asc-consulting.com.br/politica-de-cookies.html\">Política de Cookies</a> e <a href=\"https://auditeduca.github.io/asc-consulting.com.br/politica-privacidade.html\">Política de Privacidade</a> (LGPD, Lei 13.709/2018). Nenhum dado é armazenado sem sua autorização.",
+      "btnConfig": "Configurar",
+      "btnAccept": "Aceitar todos",
+      "btnReject": "Apenas essenciais"
+    },
+    "modal": {
+      "title": "Configurações de Privacidade",
+      "intro": "Gerencie suas preferências de cookies. Os cookies essenciais são necessários para o funcionamento do site e não podem ser desativados.",
+      "categories": [
+        { "id": "essential",  "label": "Essenciais",              "description": "Necessários para navegação, segurança e acessibilidade. Não podem ser desativados.", "required": true },
+        { "id": "analytics",  "label": "Análise & Desempenho",    "description": "Permitem entender como visitantes interagem com o site (Google Analytics). Dados anonimizados.", "required": false },
+        { "id": "marketing",  "label": "Marketing & Personalização","description": "Usados para exibir conteúdo relevante em plataformas externas (LinkedIn, Meta).", "required": false }
+      ],
+      "btnSave": "Salvar preferências",
+      "btnAcceptAll": "Aceitar todos"
+    }
+  },
+  "search": {
+    "placeholder": "Digite o que procura…",
+    "btnLabel": "Buscar",
+    "baseUrl": "https://auditeduca.github.io/asc-consulting.com.br/busca?q="
+  },
+  "analytics": {
+    "gtagId": "G-XXXXXXXXXX"
+  }
+}
