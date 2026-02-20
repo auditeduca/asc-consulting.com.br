@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASC Consulting | Estratégia, Governança e Transformação</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +158,9 @@
             height: 500px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .hero-image-container::after {
             content: '';
@@ -162,25 +168,43 @@
             inset: 0;
             background: repeating-linear-gradient(45deg, rgba(212, 184, 120, 0.05) 0, rgba(212, 184, 120, 0.05) 1px, transparent 1px, transparent 15px);
         }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            mix-blend-mode: overlay;
+            transition: transform 10s ease;
+        }
+        .hero-image-container:hover .hero-img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- HEADER (exatamente igual aos arquivos fornecidos) -->
+    <!-- HEADER ATUALIZADO (Logo e Links) -->
     <header class="site-header">
         <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-            <a href="index.html" class="serif text-3xl font-bold text-[#1A3668]">ASC<span class="text-[#967938]">.</span></a>
+            <!-- Logo Substituída -->
+            <a href="index.html" class="flex items-center">
+                <img src="logo-asc-main.avif" alt="ASC Consulting Logo" class="h-12 w-auto object-contain">
+            </a>
+            
+            <!-- Navegação Atualizada com Nomes e URLs novas -->
             <nav class="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest text-[#1A3668]">
-                <a href="sobre-a-asc.html" class="hover:text-[#967938] transition-colors">A Boutique</a>
-                <a href="linhas-de-negocios.html" class="hover:text-[#967938] transition-colors">Especialidades</a>
-                <a href="insights-estrategicos.html" class="hover:text-[#967938] transition-colors">Insights</a>
-                <a href="segmentos-de-negocios.html" class="hover:text-[#967938] transition-colors">Segmentos</a>
+                <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" class="hover:text-[#967938] transition-colors">Sobre a ASC</a>
+                <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" class="hover:text-[#967938] transition-colors">Serviços</a>
+                <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" class="hover:text-[#967938] transition-colors">Insights</a>
+                <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" class="hover:text-[#967938] transition-colors">Indústrias</a>
             </nav>
-            <a href="solicitacao-servicos.html" class="bg-[#1A3668] text-white px-6 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Agendar Diagnóstico</a>
+            
+            <!-- CTA Atualizado -->
+            <a href="https://auditeduca.github.io/asc-consulting.com.br/solicitacao-de-servico.html" class="bg-[#1A3668] text-white px-6 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#967938] transition-all">Solicitar Serviço</a>
         </div>
     </header>
 
-    <!-- HERO PODEROSO (seguindo padrão ASC) -->
+    <!-- HERO PODEROSO -->
     <section class="relative bg-[#0A1F40] pt-32 pb-44 text-white overflow-hidden">
         <div class="absolute inset-0 bg-grid"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -195,12 +219,14 @@
                         Unimos o rigor técnico das Big Four à agilidade de uma boutique para converter desafios complexos em valor perene — sejam eles contábeis, tributários ou de governança.
                     </p>
                     <div class="flex gap-6">
-                        <a href="solicitacao-servicos.html" class="btn-gold">Diagnóstico Gratuito <i class="fas fa-arrow-right"></i></a>
-                        <a href="sobre-a-asc.html" class="border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#0A1F40] transition-all">Conhecer a ASC</a>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/solicitacao-de-servico.html" class="btn-gold">Diagnóstico Gratuito <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" class="border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#0A1F40] transition-all">Conhecer a ASC</a>
                     </div>
                 </div>
-                <div class="reveal hero-image-container">
-                    <!-- Imagem conceitual (mantendo padrão abstrato) -->
+                
+                <!-- Imagem do Hero Substituída -->
+                <div class="reveal hero-image-container shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&q=80" alt="Consultoria e Estratégia Corporativa" class="hero-img">
                 </div>
             </div>
         </div>
@@ -221,7 +247,7 @@
         </div>
     </div>
 
-    <!-- SEÇÃO DE INSIGHTS (PUBLICAÇÕES) -->
+    <!-- SEÇÃO DE INSIGHTS -->
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
@@ -236,7 +262,7 @@
                     <span class="tag-category">Reforma Tributária</span>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">O Pilar Dois da OCDE e o impacto no Brasil</h3>
                     <p class="text-sm text-gray-500 mb-6 flex-grow">A transição para a taxa mínima de 15% e os riscos de tributação complementar (Top-up Taxes) exigem reestruturação urgente.</p>
-                    <a href="insights-estrategicos.html#pilar-dois" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
                         Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -245,7 +271,7 @@
                     <span class="tag-category">IFRS 18</span>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">A nova face das demonstrações financeiras</h3>
                     <p class="text-sm text-gray-500 mb-6 flex-grow">A nova norma de apresentação e divulgação muda radicalmente o reporte corporativo. Adequação não é opcional.</p>
-                    <a href="insights-estrategicos.html#ifrs18" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
                         Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -254,24 +280,24 @@
                     <span class="tag-category">Valuation de Intangíveis</span>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">IA e algoritmos: o ativo fora do balanço</h3>
                     <p class="text-sm text-gray-500 mb-6 flex-grow">Modelos de IA geram receita mas permanecem subavaliados. Como capturar esse valor em negociações estratégicas.</p>
-                    <a href="insights-estrategicos.html#intangiveis" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2 mt-auto">
                         Ler publicação <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
             </div>
             <div class="text-center mt-12 reveal">
-                <a href="insights-estrategicos.html" class="btn-gold">Ver todos os insights <i class="fas fa-arrow-right"></i></a>
+                <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" class="btn-gold">Ver todos os insights <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- SERVIÇOS (LINKS PARA LINHAS DE NEGÓCIO) -->
+    <!-- SERVIÇOS -->
     <section class="py-24 bg-[#F8F7F4] relative overflow-hidden">
         <div class="absolute inset-0 bg-grid"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 reveal">
                 <span class="tag-category">Expertise</span>
-                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">Nossas Especialidades</h2>
+                <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">Nossos Serviços</h2>
                 <p class="text-lg text-gray-500 max-w-3xl mx-auto">Soluções integradas que combinam contabilidade avançada, estratégia tributária e governança de excelência.</p>
             </div>
 
@@ -281,7 +307,7 @@
                     <i class="fas fa-calculator text-4xl text-[#967938] mb-6"></i>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">Consultoria Contábil</h3>
                     <p class="text-sm text-gray-500 mb-6">IFRS, CPC, impairment, consolidação e arrendamentos (IFRS 16).</p>
-                    <a href="linhas-de-negocios.html#contabil" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -290,7 +316,7 @@
                     <i class="fas fa-file-invoice-dollar text-4xl text-[#967938] mb-6"></i>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">Tributário</h3>
                     <p class="text-sm text-gray-500 mb-6">Planejamento tributário, reforma tributária, PILAR 2 e contencioso estratégico.</p>
-                    <a href="linhas-de-negocios.html#tributario" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -299,7 +325,7 @@
                     <i class="fas fa-handshake text-4xl text-[#967938] mb-6"></i>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">M&A e Transações</h3>
                     <p class="text-sm text-gray-500 mb-6">FDD, QofE, valuation, data room e suporte em negociações cross-border.</p>
-                    <a href="linhas-de-negocios.html#ma" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -308,7 +334,7 @@
                     <i class="fas fa-users-cog text-4xl text-[#967938] mb-6"></i>
                     <h3 class="serif text-2xl text-[#1A3668] mb-4">Governança</h3>
                     <p class="text-sm text-gray-500 mb-6">Conselhos consultivos, sucessão, mentoria executiva e diversidade.</p>
-                    <a href="linhas-de-negocios.html#governanca" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Saiba mais <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -316,13 +342,13 @@
         </div>
     </section>
 
-    <!-- DORES DOS CLIENTES / OPORTUNIDADES (LINKADAS COM SEGMENTOS) -->
+    <!-- DORES DOS CLIENTES / INDÚSTRIAS -->
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <span class="tag-category">Desafios e Oportunidades</span>
                 <h2 class="serif text-4xl md:text-6xl text-[#1A3668] mb-6">O que sua empresa enfrenta em 2026</h2>
-                <p class="text-lg text-gray-500 max-w-3xl mx-auto">Identificamos as principais dores por segmento e estruturamos soluções sob medida.</p>
+                <p class="text-lg text-gray-500 max-w-3xl mx-auto">Identificamos as principais dores por indústria e estruturamos soluções sob medida.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
@@ -334,7 +360,7 @@
                     </div>
                     <h3 class="serif text-xl text-[#1A3668] mb-3">Rastreabilidade e compliance internacional</h3>
                     <p class="text-sm text-gray-500 mb-4">A partir de 2026, a UE exigirá rastreabilidade total. Produtores sem conformidade contábil perderão acesso ao mercado externo.</p>
-                    <a href="segmentos-de-negocios.html#agro" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -346,7 +372,7 @@
                     </div>
                     <h3 class="serif text-xl text-[#1A3668] mb-3">Subavaliação em M&A</h3>
                     <p class="text-sm text-gray-500 mb-4">Ativos de IA e algoritmos ficam "fora do balanço" (IAS 38), levando a descontos agressivos. Valuation especializado captura o valor real.</p>
-                    <a href="segmentos-de-negocios.html#tech" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -358,7 +384,7 @@
                     </div>
                     <h3 class="serif text-xl text-[#1A3668] mb-3">Super-ciclo de IPOs</h3>
                     <p class="text-sm text-gray-500 mb-4">Pipeline de R$ 1,2 tri em ofertas. A falta de governança e sucessão afasta fundos institucionais. Preparação com 12-24 meses de antecedência é crítica.</p>
-                    <a href="segmentos-de-negocios.html#infra" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -370,7 +396,7 @@
                     </div>
                     <h3 class="serif text-xl text-[#1A3668] mb-3">Margens comprimidas</h3>
                     <p class="text-sm text-gray-500 mb-4">Juros de 15% e custos operacionais crescentes exigem automação de processos financeiros e redução de desperdícios para recuperar margem líquida.</p>
-                    <a href="segmentos-de-negocios.html#industria" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
+                    <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" class="text-xs font-bold uppercase tracking-widest text-[#1A3668] hover:text-[#967938] flex items-center gap-2">
                         Ver solução <i class="fas fa-arrow-right text-[8px]"></i>
                     </a>
                 </div>
@@ -393,20 +419,20 @@
                         <p class="text-xs font-bold tracking-widest uppercase opacity-80">linkedin.com/company/asc-consultoria</p>
                     </div>
                     <div class="pt-10 reveal">
-                        <a href="solicitacao-servicos.html" class="btn-gold scale-110">Agendar Diagnóstico Estratégico <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/solicitacao-de-servico.html" class="btn-gold scale-110">Agendar Diagnóstico Estratégico <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
                 <div class="lg:w-1/2 grid grid-cols-2 gap-6 reveal">
                     <!-- Vânia -->
                     <div class="partner-box text-center lg:text-left">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Vânia Abreu" class="partner-photo">
+                        <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/team/vania-abreu-socia-asc-consulting.webp" alt="Vânia Abreu" class="partner-photo">
                         <p class="serif text-xl mt-4">Vânia Abreu</p>
                         <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Sócia-Fundadora | ex-Big 4</p>
                     </div>
                     <!-- Patrícia -->
                     <div class="partner-box text-center lg:text-left">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80" alt="Patrícia Sakata" class="partner-photo">
+                        <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/team/patricia-sakata-socia-asc-consulting.webp" alt="Patrícia Sakata" class="partner-photo">
                         <p class="serif text-xl mt-4">Patrícia Sakata</p>
                         <p class="text-[9px] uppercase tracking-widest text-[#D4B878]">Sócia-Fundadora | ex-Big 4</p>
                     </div>
@@ -415,14 +441,14 @@
         </div>
     </section>
 
-    <!-- FOOTER (idêntico aos arquivos) -->
+    <!-- FOOTER -->
     <footer class="py-12 bg-white text-center border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-6">
             <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400">© 2026 ASC Consulting | Abreu & Sakata Consulting Ltda.</p>
         </div>
     </footer>
 
-    <!-- REVEAL ENGINE (cópia exata) -->
+    <!-- REVEAL ENGINE -->
     <script>
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
