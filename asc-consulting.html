@@ -145,21 +145,23 @@
                     </div>
                 </div>
                 <div id="final-step" class="opacity-0 transform scale-50 transition-all duration-1000 flex flex-col items-center pt-10">
+                    <!-- Logotipo substituindo o círculo de texto anterior -->
                     <img src="assets/brand/logo-asc-main.avif" alt="ASC Consulting Logo" class="h-24 md:h-28 mb-8 drop-shadow-xl">
                     
                     <h2 class="text-4xl font-serif text-navy mt-2 font-bold">Seu lugar agora é aqui!</h2>
                     <button id="show-dashboard" class="mt-10 px-10 py-4 bg-gold text-white font-bold rounded-full hover:shadow-2xl transition transform hover:-translate-y-1 shadow-lg">
                         EXPLORAR O NOVO WEBSITE <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SEÇÃO 3: DASHBOARD DE CARDS (SEÇÃO INTERNA) -->
+    <!-- SEÇÃO 3: DASHBOARD DE CARDS -->
     <div id="dashboard-section" class="hidden min-h-screen w-full dashboard-bg p-6 md:p-12 overflow-y-auto relative">
         <div class="max-w-7xl mx-auto relative z-10">
             
+            <!-- Header do Dashboard -->
             <header class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-10">
                 <div class="mb-4 md:mb-0">
                     <img src="assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-10 mb-3">
@@ -179,14 +181,14 @@
             <section class="mb-16">
                 <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">A Marca & Visão</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Link atualizado para sobre-a-asc.html -->
+                    <!-- Sobre a ASC -->
                     <div class="pdf-card rounded p-4 flex flex-col group">
                         <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
                             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
                         <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Sobre a ASC</h3>
                         <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">A história e o DNA executivo ex-Big Four.</p>
-                        <a href="sobre-a-asc.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Visualizar</a>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc-v4_corrigido.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Visualizar</a>
                     </div>
                     <!-- Missão & Propósito -->
                     <div class="pdf-card rounded p-4 flex flex-col group">
@@ -389,16 +391,9 @@
             }, 1000 * (items.length + 1.8));
         }
 
-        // O redirecionamento agora é feito pelo próprio link <a> no HTML.
-        // O event listener abaixo serve apenas para manter a lógica original
-        // caso o usuário ainda precise interagir com a dashboard interna 
-        // em algum momento futuro de desenvolvimento.
-        document.getElementById('show-dashboard').addEventListener('click', (e) => {
-            // Se o link tiver um destino real, o navegador seguirá o href.
-            // Para manter a animação e redirecionamento limpo:
-            // e.preventDefault();
-            // expSection.classList.add('hidden');
-            // dashSection.classList.remove('hidden');
+        document.getElementById('show-dashboard').addEventListener('click', () => {
+            expSection.classList.add('hidden');
+            dashSection.classList.remove('hidden');
         });
     </script>
 </body>
