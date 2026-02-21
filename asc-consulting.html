@@ -25,7 +25,6 @@
         .bg-navy { background-color: var(--asc-navy); }
         .bg-gold { background-color: var(--asc-gold); }
 
-        /* Estilo de Fundo do Dashboard (Inspirado no arquivo corrigido) */
         .dashboard-bg {
             background-color: #fcfcfc;
             background-image: 
@@ -44,7 +43,6 @@
             pointer-events: none;
         }
 
-        /* Animações */
         .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -58,15 +56,15 @@
             transform: translateX(-50%);
         }
 
-        /* PDF Card Style */
         .pdf-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #eef0f2;
             background: #ffffff;
+            height: 100%;
         }
         .pdf-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             border-color: var(--asc-gold);
         }
 
@@ -100,7 +98,7 @@
     <div id="login-section" class="min-h-screen flex items-center justify-center p-4">
         <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl border-t-4 border-[#D4AF37] fade-in relative z-10">
             <div class="text-center mb-8">
-                <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-14 mx-auto mb-4">
+                <img src="assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-14 mx-auto mb-4">
                 <h1 class="text-xl font-semibold text-navy uppercase tracking-widest">Acesso Estratégico</h1>
                 <p class="text-gray-400 text-sm italic">Área exclusiva para sócias fundadoras</p>
             </div>
@@ -147,26 +145,26 @@
                     </div>
                 </div>
                 <div id="final-step" class="opacity-0 transform scale-50 transition-all duration-1000 flex flex-col items-center pt-10">
-                    <div class="bg-navy text-white p-10 rounded-full shadow-2xl border-4 border-[#D4AF37] text-center">
-                        <h3 class="text-2xl font-bold uppercase tracking-widest">ASC Consulting</h3>
-                    </div>
-                    <h2 class="text-4xl font-serif text-navy mt-6 font-bold">Seu lugar agora é aqui!</h2>
+                    <!-- Logotipo substituindo o círculo de texto anterior -->
+                    <img src="assets/brand/logo-asc-main.avif" alt="ASC Consulting Logo" class="h-24 md:h-28 mb-8 drop-shadow-xl">
+                    
+                    <h2 class="text-4xl font-serif text-navy mt-2 font-bold">Seu lugar agora é aqui!</h2>
                     <button id="show-dashboard" class="mt-10 px-10 py-4 bg-gold text-white font-bold rounded-full hover:shadow-2xl transition transform hover:-translate-y-1 shadow-lg">
-                        ACESSAR ESCRITÓRIO VIRTUAL <i class="fas fa-arrow-right ml-2"></i>
+                        EXPLORAR O NOVO WEBSITE <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SEÇÃO 3: DASHBOARD DE CARDS (DASHBOARD-BG) -->
+    <!-- SEÇÃO 3: DASHBOARD DE CARDS -->
     <div id="dashboard-section" class="hidden min-h-screen w-full dashboard-bg p-6 md:p-12 overflow-y-auto relative">
         <div class="max-w-7xl mx-auto relative z-10">
             
             <!-- Header do Dashboard -->
             <header class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 pb-10">
                 <div class="mb-4 md:mb-0">
-                    <img src="https://auditeduca.github.io/asc-consulting.com.br/assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-10 mb-3">
+                    <img src="assets/brand/logo-asc-main.avif" alt="ASC Logo" class="h-10 mb-3">
                     <div class="flex items-center space-x-2">
                         <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
                         <p class="text-gray-500 text-[10px] tracking-widest uppercase font-semibold">Sessão Segura Ativa</p>
@@ -179,123 +177,111 @@
                 </div>
             </header>
 
-            <!-- 1. PÁGINAS INSTITUCIONAIS -->
+            <!-- 1. A MARCA & VISÃO (INSTITUCIONAL) -->
             <section class="mb-16">
-                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Páginas Institucionais</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <div class="pdf-card rounded p-4 flex flex-col group">
-                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <h3 class="font-bold text-navy text-xs mb-2">Página Principal (Home)</h3>
-                        <a href="https://auditeduca.github.io/asc-consulting.com.br/index.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-center text-[10px] font-bold text-navy border border-gray-100 hover:bg-navy hover:text-white transition">VISUALIZAR</a>
-                    </div>
+                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">A Marca & Visão</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Sobre a ASC -->
                     <div class="pdf-card rounded p-4 flex flex-col group">
                         <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
                             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
-                        <h3 class="font-bold text-navy text-xs mb-2">Sobre a ASC</h3>
-                        <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-center text-[10px] font-bold text-navy border border-gray-100 hover:bg-navy hover:text-white transition">VISUALIZAR</a>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Sobre a ASC</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">A história e o DNA executivo ex-Big Four.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/sobre-a-asc.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Visualizar</a>
                     </div>
-                </div>
-            </section>
-
-            <!-- 2. PÁGINAS DE CORE BUSINESS -->
-            <section class="mb-16">
-                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Páginas de Core Business</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <div class="pdf-card rounded p-4 flex flex-col group border-l-4 border-l-navy">
-                        <div class="aspect-video bg-gray-100 mb-3 flex items-center justify-center">
-                            <i class="fas fa-briefcase text-3xl text-gray-300"></i>
+                    <!-- Missão & Propósito -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded relative">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
-                        <h3 class="font-bold text-navy text-xs mb-2">Nossos Serviços</h3>
-                        <a href="#" class="mt-auto py-2 bg-gray-200 text-center text-[10px] font-bold text-gray-400 cursor-not-allowed">EM DESENVOLVIMENTO</a>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Missão & Propósito</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Onde queremos chegar e como transformamos decisões.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/missao.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Visualizar</a>
+                    </div>
+                    <!-- Mapa do Site -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-100 mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-sitemap text-3xl text-gray-300"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Mapa do Site</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Visão geral da arquitetura de informação digital.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/mapa-do-site.html" target="_blank" class="mt-auto py-2 bg-gray-100 text-navy text-center text-[10px] font-bold rounded hover:bg-navy hover:text-white transition uppercase">Visualizar</a>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. PROPOSTA DE FERRAMENTAS PARA CLIENTES -->
+            <!-- 2. EXPERTISE & SOLUÇÕES (CORE BUSINESS) -->
             <section class="mb-16">
-                <div class="flex items-center space-x-4 mb-6">
-                    <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest mb-0">Ferramentas para Clientes</h2>
-                    <span class="bg-gold text-white text-[9px] px-2 py-1 rounded font-bold uppercase tracking-tighter">Proposta</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <!-- Dashboard de Mercado -->
-                    <div class="pdf-card rounded p-4 bg-white">
-                        <div class="text-gold mb-3 text-xl"><i class="fas fa-chart-line"></i></div>
-                        <h3 class="font-bold text-navy text-xs mb-1">Dashboard de Mercado</h3>
-                        <p class="text-[10px] text-gray-400 mb-4 italic">Análise de dados em tempo real.</p>
-                        <a href="dashboard-de-mercado.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Expertise & Soluções</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Linhas de Negócio -->
+                    <div class="pdf-card rounded p-4 flex flex-col group border-l-4 border-l-navy">
+                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded">
+                            <img src="https://images.unsplash.com/photo-1454165833767-02a698d48721?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Linhas de Negócio</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">As 5 frentes estratégicas de atuação da ASC.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/linhas-de-negocio.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Acessar</a>
                     </div>
-                    <!-- Arrendamento -->
-                    <div class="pdf-card rounded p-4 bg-white">
-                        <div class="text-gold mb-3 text-xl"><i class="fas fa-hand-holding-usd"></i></div>
-                        <h3 class="font-bold text-navy text-xs mb-1">Arrendamento</h3>
-                        <p class="text-[10px] text-gray-400 mb-4 italic">Gestão de ativos e contratos.</p>
-                        <a href="arrendamento.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    <!-- Segmentos de Negócios -->
+                    <div class="pdf-card rounded p-4 flex flex-col group border-l-4 border-l-navy">
+                        <div class="aspect-video bg-gray-50 mb-3 overflow-hidden rounded">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Segmentos Atendidos</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Expertise setorial e foco em mercados complexos.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/segmentos-de-negocios.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Acessar</a>
                     </div>
-                    <!-- Cursos -->
-                    <div class="pdf-card rounded p-4 bg-white">
-                        <div class="text-gold mb-3 text-xl"><i class="fas fa-graduation-cap"></i></div>
-                        <h3 class="font-bold text-navy text-xs mb-1">Cursos & Educação</h3>
-                        <p class="text-[10px] text-gray-400 mb-4 italic">Portal de capacitação executiva.</p>
-                        <a href="cursos.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
-                    </div>
-                    <!-- Portal do Cliente -->
-                    <div class="pdf-card rounded p-4 bg-white border-dashed border-2">
-                        <div class="text-gold mb-3 text-xl"><i class="fas fa-user-tie"></i></div>
-                        <h3 class="font-bold text-navy text-xs mb-1">Portal do Cliente</h3>
-                        <p class="text-[10px] text-gray-400 mb-4 italic">Espaço exclusivo de governança.</p>
-                        <a href="portal-do-cliente.html" class="block w-full py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition">ACESSAR</a>
+                    <!-- Solicitação de Serviço -->
+                    <div class="pdf-card rounded p-4 flex flex-col group border-l-4 border-l-gold">
+                        <div class="aspect-video bg-gray-50 mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-file-signature text-3xl text-gold"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Solicitação de Serviço</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Canal formal de engajamento e novos projetos.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/solicitacao-de-servico.html" target="_blank" class="mt-auto py-2 bg-gold text-white text-center text-[10px] font-bold rounded hover:bg-navy transition uppercase">Ir para Página</a>
                     </div>
                 </div>
             </section>
 
-            <!-- 4. PORTAL ADMINISTRATIVO / ESCRITÓRIO VIRTUAL -->
-            <section class="mb-20">
-                <div class="bg-navy p-10 rounded-xl shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-[0.02] transform rotate-45 -translate-y-20 translate-x-20"></div>
-                    
-                    <h2 class="text-white font-bold text-xl uppercase tracking-widest mb-2">Portal Administrativo</h2>
-                    <p class="text-gray-400 text-xs mb-8">Meu Escritório Virtual - Gestão Interna ASC</p>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                        <!-- Dashboard -->
-                        <a href="dashboar.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-th-large text-gold text-lg mb-2 group-hover:scale-110 transition"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Dashboard</span>
-                        </a>
-                        <!-- Publicação -->
-                        <a href="publicacao.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-edit text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Publicação</span>
-                        </a>
-                        <!-- Templates -->
-                        <a href="Templates.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-file-code text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Templates</span>
-                        </a>
-                        <!-- Marketing -->
-                        <a href="markting.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-bullhorn text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Marketing</span>
-                        </a>
-                        <!-- ASC-Comunica -->
-                        <a href="ASC-Comunica.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-comments text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">ASC Comunica</span>
-                        </a>
-                        <!-- Politicas -->
-                        <a href="Politicas-internas.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-shield-alt text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Políticas</span>
-                        </a>
-                        <!-- Midias -->
-                        <a href="ASC-nas-midias.html" class="bg-white bg-opacity-5 p-4 rounded hover:bg-opacity-10 transition text-center group">
-                            <i class="fas fa-newspaper text-gold text-lg mb-2"></i>
-                            <span class="block text-[9px] text-white font-semibold uppercase tracking-tighter">Nas Mídias</span>
-                        </a>
+            <!-- 3. INTELIGÊNCIA & GOVERNANÇA -->
+            <section class="mb-16">
+                <h2 class="section-title text-navy font-bold text-lg uppercase tracking-widest">Inteligência & Governança</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Insights -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-navy mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-lightbulb text-3xl text-gold"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Insights de Mercado</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Tendências, artigos e visão estratégica Big Four.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/insights.html" target="_blank" class="mt-auto py-2 bg-navy text-white text-center text-[10px] font-bold rounded hover:bg-gold transition uppercase">Visualizar</a>
+                    </div>
+                    <!-- Pegada de Carbono -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-50 mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-leaf text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Pegada de Carbono (ESG)</h3>
+                        <p class="text-[10px] text-gray-500 mb-4 flex-grow italic">Nosso compromisso com a sustentabilidade.</p>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/pegada-de-carbono.html" target="_blank" class="mt-auto py-2 bg-gray-100 text-navy text-center text-[10px] font-bold rounded hover:bg-navy hover:text-white transition uppercase">Visualizar</a>
+                    </div>
+                    <!-- Política de Acessibilidade -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-100 mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-universal-access text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Acessibilidade</h3>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/politica-de-acessibilidade.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-navy text-center text-[10px] font-bold rounded hover:bg-navy hover:text-white transition uppercase">Abrir Documento</a>
+                    </div>
+                    <!-- Política de Cookies -->
+                    <div class="pdf-card rounded p-4 flex flex-col group">
+                        <div class="aspect-video bg-gray-100 mb-3 flex items-center justify-center rounded">
+                            <i class="fas fa-cookie-bite text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="font-bold text-navy text-xs mb-1 uppercase tracking-tighter">Política de Cookies</h3>
+                        <a href="https://auditeduca.github.io/asc-consulting.com.br/politica-de-cookies.html" target="_blank" class="mt-auto py-2 bg-gray-50 text-navy text-center text-[10px] font-bold rounded hover:bg-navy hover:text-white transition uppercase">Abrir Documento</a>
                     </div>
                 </div>
             </section>
